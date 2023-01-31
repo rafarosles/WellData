@@ -1,0 +1,31 @@
+﻿.watermarked {
+    position: relative;
+}
+
+    .watermarked:after {
+        content: "";
+        display: block;
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-image: url("static/base/img/logo4.png");
+        background-size: auto;
+        background-position: left;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+    }
+
+a.cjs-disabled {
+    pointer-events: none;
+    cursor: default;
+    color: var(--gray) !important;
+    opacity: .6;
+}
+
+@media (min-width: 576px) {
+    .ancho-boton {
+        width: 120px;
+    }
+}

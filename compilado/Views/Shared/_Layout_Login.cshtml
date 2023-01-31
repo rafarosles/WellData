@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base href="">
+    <meta charset="utf-8" />
+    <title>wellData</title>
+    <meta name="description" content="">
+    <meta name="author" content="AGMA">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/Content/plugins.bundle.css" rel="stylesheet" />
+    <link href="~/Content/style.bundle.css" rel="stylesheet" />
+    <link href="~/Content/estilos.css" rel="stylesheet" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+    <link href="~/Content/navy.css" rel="stylesheet" />
+
+    <!--WEBFONTS -->
+    <link href="~/line-awesome-1.3.0/1.3.0/css/line-awesome.css" rel="stylesheet" />
+
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <link href="~/Content/estiloLogin.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />    
+</head>
+<body>
+    <div ng-app="WellData" ng-controller="WellDataController as ctrl">
+        <!--begin: User bar -->
+        <!--<div class="kt-header__topbar-item kt-header__topbar-item--user cursor-pointer"
+             id="kt_offcanvas_toolbar_profile_toggler_btn">
+            <div class="kt-header__topbar-welcome text-white">
+                Welcome,
+            </div>
+            <div class="kt-header__topbar-username text-white">
+                Leopoldo
+            </div>
+            <div class="kt-header__topbar-wrapper">-->
+        <!-- <img alt="Pic" src="/static/base/assets/media/users/default.jpg" /> -->
+        <!--<img alt="Pic" src="~/images/default.jpg" />
+
+            </div>
+        </div>-->
+        <!--end: User bar -->
+        @RenderBody()
+    </div>
+
+
+    <script src="~/Scripts/plugins.bundle.js"></script>
+    <script src="~/Scripts/js/scripts.bundle.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/global.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/Models/WellDataModel.js"></script>
+    <script src="~/Scripts/Controllers/WellDataController.js"></script>
+    <script src="~/Scripts/angular-pagination.js"></script>
+
+
+
+    @*<link href="~/Scripts/DataTables/datatables.min.css" rel="stylesheet" />
+        <script src="~/Scripts/DataTables/DataTables-1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="~/Scripts/DataTables/datatables.min.js"></script>*@
+
+
+    <link rel="stylesheet" type="text/css" href="~/Scripts/DataTables/datatables.min.css" />
+    <script type="text/javascript" charset="utf8" src="~/DataTables/DataTables-1.11.4/js/jquery.dataTables.min.js"></script>
+
+</body>
+</html>

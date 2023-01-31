@@ -1,0 +1,17 @@
+﻿.formatNumber {
+    text-align: end;
+}
+
+td.details-control {
+    background: url( "/static/base/img/details_open.png") no-repeat center center;
+    cursor: pointer;
+}
+
+tr.details td.details-control {
+    background: url("/static/base/img/details_close.png") no-repeat center center;
+}
+
+td.cjs-bg-columna {
+    background-color: #e0e0e0;
+    width: 60%;
+}

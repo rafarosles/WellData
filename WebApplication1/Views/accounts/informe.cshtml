@@ -1,0 +1,676 @@
+﻿@{
+    ViewBag.Title = "documento";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+@*<style>
+        .filter_select{display:none}
+    </style>*@
+<link href="~/Content/documento.css" rel="stylesheet" />
+
+<div class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-aside--enabled kt-aside--left kt-aside--fixed kt-aside--offcanvas-default kt-page--loading">
+    <div class="cargador" hidden="">
+        <div class="cargador-div">
+            <span class="spinner-border" role="status" aria-hidden="true" style="color:#9D2449"></span>
+            <h3 class="loader-title">Espere un momento por favor</h3>
+        </div>
+    </div>
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+            <a href="/">
+                <img class="img-fluid" style="max-height: 44px;" alt="Logo" src="~/images/logo-visor-h-blanco.png" />
+            </a>
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <!-- <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler">
+               <span></span>
+            </button> -->
+            <!-- <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler">
+               <i class="flaticon-more text-white"></i>
+            </button> -->
+            <a href="/" class="kt-header-mobile__toolbar-topbar-toggler">
+                <i class="las la-home text-white text-28px"></i>
+            </a>
+            <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler">
+                <i class="las la-ellipsis-v text-white text-28px"></i>
+            </button>
+        </div>
+    </div>
+    <!-- end:: Header Mobile -->
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item kt-grid kt-grid--ver  kt-header--fixed ">
+
+                    <!-- begin:: Brand -->
+                    <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
+                        <a href="/">
+                            <img class="img-fluid" alt="Logo" style="height: 40px;" src="~/images/logo-visor-h.png" />
+                        </a>
+                    </div>
+                    <!-- end:: Brand -->
+                    <!-- begin: Header Menu -->
+                    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn">
+                        <i class="la la-close"></i>
+                    </button>
+                    <div class="kt-header-menu-wrapper kt-grid__item" id="kt_header_menu_wrapper">
+                        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
+                            <ul class="kt-menu__nav ">
+                                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" aria-haspopup="true">
+                                    <a href="/accounts/menu" class="kt-menu__link btn-nav-bar">
+                                        <span class="kt-menu__link-text">
+                                            <i class="las la-home"></i>
+                                            Inicio
+                                        </span>
+                                    </a>
+                                </li>
+                                <!-- clase activado kt-menu__item--active -->
+                                <!-- <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" aria-haspopup="true">
+                                   <a id="kt_aside_toggler" class="kt-menu__link btn-nav-bar">
+                                      <span class="kt-menu__link-text">
+                                         <i class="las la-bars"></i>
+                                         Panel de control
+                                      </span>
+                                   </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end: Header Menu -->
+                    <!-- begin:: Header Topbar -->
+                    <div class="kt-header__topbar kt-grid__item kt-grid__item--fluid">
+                        <!--begin: Search -->
+                        <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown">
+                            <div class="kt-header__topbar-wrapper d-none" data-toggle="dropdown" data-offset="10px,0px">
+                                <span class="kt-header__topbar-icon"><i class="flaticon2-search-1"></i></span>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-top-unround dropdown-menu-anim dropdown-menu-lg">
+                                <div class="kt-quick-search kt-quick-search--dropdown kt-quick-search--result-compact" id="kt_quick_search_dropdown">
+                                    <form method="get" class="kt-quick-search__form">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="flaticon2-search-1"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control kt-quick-search__input" placeholder="Search...">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="la la-close kt-quick-search__close"></i></span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="kt-quick-search__wrapper kt-scroll" data-scroll="true" data-height="325" data-mobile-height="200">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Search -->
+                        <!--begin: Quick actions -->
+                        <div class="kt-header__topbar-item">
+                            <div class="kt-header__topbar-wrapper" id="kt_offcanvas_toolbar_quick_actions_toggler_btn">
+                                <span class="kt-header__topbar-icon">
+                                    <i class="las la-th-large"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!--end: Quick actions -->
+                    </div>
+                    <!-- end:: Header Topbar -->
+                </div>
+                <!-- end:: Header -->
+                <!-- begin:: Subheader -->
+                <div id="kt_subheader" class="kt-subheader kt-grid__item ">
+                    <div class="kt-container  kt-container--fluid ">
+
+                        <!-- begin:: Subheader Title -->
+                        <div class="kt-subheader__title">
+                            <!-- <button class="kt-subheader__toggler kt-subheader__toggler--left" id="kt_aside_toggler">
+                               <span></span>
+                            </button> -->
+
+                            <div class="kt-subheader__breadcrumbs">
+                                <i></i>
+                                <span class="kt-subheader__breadcrumbs-separator"></span>
+                                <a href="" class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--home">Expediente de pozos AETS</a>
+                            </div>
+
+                        </div>
+                        <!-- end:: Subheader Title -->
+                    </div>
+                </div>
+                <!-- end:: Subheader -->
+
+                <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+                    <!-- begin:: Content -->
+                    <div class="kt-container  kt-grid__item kt-grid__item--fluid">
+                        <!--begin::Dashboard 1-->
+                        <!--begin::Row-->
+
+
+                        <div class="kt-portlet kt-portlet--mobile">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        Expediente de pozos AETS
+                                    </h3>
+                                </div>
+
+                                <div class="kt-portlet__head-toolbar">
+                                    <div class="kt-portlet__head-toolbar">
+                                        <button type="button" class="btn btn-clean" type="button" data-toggle="collapse" data-target="#filtros"
+                                                aria-expanded="false" aria-controls="filtros">
+                                            <i class="las la-filter"></i>
+                                            <span class="d-none d-md-inline-flex">Filters</span>
+                                        </button>
+                                        <div class="dropdown dropdown-inline">
+                                            <button hidden type="button" class="btn btn-clean" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="las la-cog"></i>
+                                                <span class="d-none d-md-inline-flex">Actions</span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="kt-nav">
+
+                                                    <li class="kt-nav__item">
+                                                        <a hidden href="/admin_unit/create/documento/" class="kt-nav__link">
+                                                            <i class="las la-plus"></i>
+                                                            <span class="kt-nav__link-text">New</span>
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body">
+                                <div id="filtros">
+                                    <div class="row margin-bottom-20px">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group">
+                                            <label class="label">REGIÓN</label>
+                                            <select ng-model="ctrl.region" class="form-control form-control-sm global_filter select" id="region" ng-change="ctrl.region_seleccionada_inf_tec()">
+                                                <option value="1">Veracruz</option>
+                                                <option value="2">Bloque Sur</option>
+                                            </select>
+                                        </div>
+                                        <div id="seccion_tipo_info" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">ID INFORME</label>
+                                            <select ng-model="ctrl.informe" ng-options="list.id as list.descripcion for list in ctrl.listIdInformeInfTec" class="form-control form-control-sm global_filter select" id="cadido"></select>
+                                        </div>
+                                        <div id="seccion_tipo_info" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">TIPO INFORME</label>
+                                            <select ng-model="ctrl.tipoInforme" ng-options="list.id as list.descripcion for list in ctrl.listTipoInformeInfTec" class="form-control form-control-sm global_filter select" id="tipo_informacion"></select>
+                                        </div>
+                                        <div id="seccion_uwi" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">AREA</label>
+                                            <select ng-model="ctrl.area" ng-options="list.id as list.descripcion for list in ctrl.listAreaInfoTec" class="form-control form-control-sm global_filter select" id="uwi"> </select>
+                                        </div>
+                                        <div id="seccion_class_pozo" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">PROSPECTO</label>
+                                            <select ng-model="ctrl.prospecto" ng-options="list.id as list.descripcion for list in ctrl.listProspectoInfTec" class="form-control form-control-sm global_filter select" id="class_pozo"></select>
+                                        </div>
+                                        <div id="seccion_campo" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">CONTENIDO</label>
+                                            <select ng-model="ctrl.contenido" ng-options="list.id as list.descripcion for list in ctrl.listContenidoInfTec" class="form-control form-control-sm global_filter select" id="campo"></select>
+                                        </div>
+                                        <div id="seccion_nombre_pozo" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">AÑO</label>
+                                            <select ng-model="ctrl.anio" ng-options="list.id as list.descripcion for list in ctrl.listAniosInfoTec" class="form-control form-control-sm global_filter select" id="nombre_pozo"></select>
+                                        </div>
+                                        <div id="seccion_mne" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">ESTADOS AREA ESTUDIO</label>
+                                            <select ng-model="ctrl.edoAreaEstudio" ng-options="list.id as list.descripcion for list in ctrl.listEdosAreaEstudioInfTec" class="form-control form-control-sm global_filter select" id="mnemonico"></select>
+                                        </div>
+                                        <div id="seccion_apartado" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">TIPO EXPEDIENTE</label>
+                                            <select ng-model="ctrl.tipoExpediente" ng-options="list.id as list.descripcion for list in ctrl.listTipoExpInfoTec" class="form-control form-control-sm global_filter select" id="apartado"></select>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-6 form-group filter_select">
+
+                                        </div>
+                                        <div id="seccion_edo_fisico" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">Limpiar Filtros</label>
+                                            <button id="btn-remove-filters" ng-click="ctrl.reiniciarFiltros_InfoTec()" type="button" class="btn btn-brand form-control form-control-sm global_filter">Limpiar Filtros</button>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__foot text-right">
+                                        <button id="btn-buscar" ng-click="ctrl.obtenerGridInformesTecnicos()" type="button" class="btn btn-brand">Buscar</button>
+                                    </div>
+                                </div>
+                                <div id="div_tabla" class="hidden">
+
+                                    @*<button id="btn-txt-creator" ng-click="ctrl.crearTxt()" type="button" class="btn btn-brand">Generar TXT</button>*@
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Bloque</th>
+                                                <th>Ubicación</th>
+                                                <th>Núm. Caja</th>
+                                                <th>Tipo Información</th>
+                                                <th>Id Informe</th>
+                                                <th>Tipo Informe</th>
+                                                <th>Area</th>
+                                                <th>Prospecto</th>
+                                                <th>Contenido</th>
+                                                <th>Año</th>
+                                                <th>Estado Area Estudio</th>
+                                                <th>Tipo Expediente</th>
+                                                <th>Tipo Pack</th>
+                                                <th>Nombre Archivo Dig.</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody ng-pagination="i in ctrl.listInformesTecnicos| filter:ctrl.Buscar| itemsPerPage: 10" pagination-id="PaginationGridAR">
+                                            @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
+                                            <tr>
+                                                @*<td><i data-toggle="modal" data-target="#detalles-modal" class="fa fa-eye" ng-click="ctrl.obtenerDetalleMetadata(i.id)"></i></td>*@
+                                                <td>{{i.bloque}}</td>
+                                                <td>{{i.ubicacion}}</td>
+                                                <td>{{i.num_caja}}</td>
+                                                <td>{{i.tipo_informacion}}</td>
+                                                <td>{{i.id_Informe}}</td>
+                                                <td>{{i.tipo_Informe}}</td>
+                                                <td>{{i.area}}</td>
+                                                <td>{{i.prospecto}}</td>
+                                                <td>{{i.contenido}}</td>
+                                                <td>{{i.anio}}</td>
+                                                <td>{{i.estados_areaestudio}}</td>
+                                                <td>{{i.tipo_expediente}}</td>
+                                                <td>{{i.tipo_pack}}</td>
+                                                <td><a ng-click="ctrl.abrirDocumentoInfoTec(i.nombre_archivo_digital)">{{i.nombre_archivo_digital}}</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <ng-pagination-control boundary-links="true" pagination-id="PaginationGridAR"></ng-pagination-control>
+
+                                </div>
+
+                            </div>
+                            @*<a id="aux" href="" target="_blank"></a>*@
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="pdf-modal" tabindex="-1" role="dialog" aria-labelledby="pdf-modal-label" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="pdf-modal-label">Upload File</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="formulario-pdf" enctype="multipart/form-data">
+                                            <input type="hidden" name="csrfmiddlewaretoken" value="FjZIX6Eac1T1nR6x0R5AuNvpyMdOvesbzFYlpggiEevwRG8oD6MRBVCho9xwj5v9">
+                                            <label>Attach PDF:</label>
+                                            <input type="hidden" id="id-archivo-pdf">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="pdf-archivo" accept=".pdf">
+                                                <label class="custom-file-label" for="pdf-archivo" style="text-align: left;"
+                                                       data-browse="Search" id="pdf-archivo-label">Select a file</label>
+                                            </div>
+                                            <br><br>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button onclick="javascript:fn_mezclar_pdf();" type="button" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="delete-modal-label">Delete File</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label>Are you sure you want to delete this file?</label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button onclick="javascript:viewer_delete($('#id-archivo-pdf').val());" type="button" class="btn btn-delete">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="detalles-modal" tabindex="-1" role="dialog" aria-labelledby="detalles-modal-label" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detalles-modal-label">Metadatos</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered" id="tabla-detalles">
+                                            <tr>
+                                                <th colspan="2">ÁREA DE IDENTIFICACIÓN</th>
+                                            </tr>
+                                            <tr>
+                                                <td>INAI:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.inai_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>FECHA DE INICIO DEL EXPEDIENTE: </td>
+                                                <td class="cjs-bg-columna"></td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">ÁREA DE CONTEXTO</th>
+                                            </tr>
+                                            <tr>
+                                                <td>UWI:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.uwi_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>NOMBRE DEL DOCUMENTO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.nombre_doc_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ÁREA QUE LO GENERO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.area_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>UBICACIÓN:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.ubicacion_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>No. CAJA:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.caja_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>TIPO INFORMACIÓN:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.tipo_info_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CLASS POZO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.class_pozo_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>STATUS POZO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.status_pozo_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CAMPO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.campo_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>NOMBRE DEL POZO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.nombre_pozo_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MNEMONICO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.mnemonico_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>DESCRIPCION:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.descripcion_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>APARTADO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.apartado_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>No. TOTAL HOJAS:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.total_hojas_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>No. TOTAL PÁGINAS:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.total_pag_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OBSERVACIONES:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.observaciones_detalle}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ESTADO:</td>
+                                                <td class="cjs-bg-columna">{{ctrl.estado_detalle}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end::Row-->
+                        <!--end::Dashboard 1-->
+                    </div>
+                    <!-- end:: Content -->
+                </div>
+
+                <!-- begin:: Footer -->
+                <!-- <div class="kt-footer kt-grid__item" id="kt_footer">
+                   <div class="kt-container ">
+                      <div class="kt-footer__copyright">
+                         <a href="http://www.gob.mx/fovissste" target="_blank" class="kt-link"> 2020 &copy;
+                            www.gob.mx/fovissste </a>
+                      </div>
+                      <div class="kt-footer__menu">
+                         <a href="https://www.gob.mx/privacidadintegral" target="_blank" class="kt-link">Aviso de privacidad
+                            integral</a>
+                         <a href="https://www.gob.mx/privacidadsimplificado" target="_blank" class="kt-link">Aviso de
+                            privacidad simplificado</a>
+                      </div>
+                   </div>
+                </div> -->
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+    <!-- end:: Page -->
+    <!-- begin:: Aside -->
+    <div class="kt-aside  kt-aside--fixed " id="kt_aside">
+        <div class="kt-aside__head">
+            <h3 class="kt-aside__title">
+                Dashboard
+            </h3>
+            <a href="#" class="kt-aside__close" id="kt_aside_close"><i class="flaticon2-delete"></i></a>
+        </div>
+        <div class="kt-aside__body">
+            <!-- begin:: Aside Menu -->
+            <div class="kt-aside-menu-wrapper" id="kt_aside_menu_wrapper">
+                <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1">
+                    <ul class="kt-menu__nav ">
+                        <li class="kt-menu__section kt-menu__section--first">
+                            <h4 class="kt-menu__section-text"> Subdirección </h4>
+                            <i class="kt-menu__section-icon flaticon-more-v2"></i>
+                        </li>
+
+                        <li class="kt-menu__section ">
+                            <h4 class="kt-menu__section-text">Configuration</h4>
+                            <i class="kt-menu__section-icon flaticon-more-v2"></i>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="#" class="kt-menu__link ">
+                                <span class="kt-menu__link-text">Users & Authentication</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="#" class="kt-menu__link ">
+                                <span class="kt-menu__link-text">Authorization</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="/admin_unit/list/"
+                               class="kt-menu__link "><span class="kt-menu__link-text">Departments</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end:: Aside Menu -->
+        </div>
+    </div>
+    <!-- end:: Aside -->
+    <!-- begin:: Topbar Offcanvas Panels -->
+    <!-- begin::Offcanvas Toolbar Quick Actions -->
+    <div id="kt_offcanvas_toolbar_quick_actions" class="kt-offcanvas-panel">
+        <div class="kt-offcanvas-panel__head">
+            <h3 class="kt-offcanvas-panel__title">
+                Quick Actions
+            </h3>
+            <a href="#" class="kt-offcanvas-panel__close" id="kt_offcanvas_toolbar_quick_actions_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="kt-offcanvas-panel__body">
+            <div class="kt-grid-nav-v2 quick-actions-modules-custom" id="quick-actions-modules">
+                <a href="/admin_unit/list/documento/" class="kt-grid-nav-v2__item">
+                    <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                    <div class="kt-grid-nav-v2__item-title">Expediente de pozos AETS</div>
+                </a>
+                <a href="#" class="kt-grid-nav-v2__item disabled">
+                    <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                    <div class="kt-grid-nav-v2__item-title">Estudios e Informes Técnicos</div>
+                </a>
+                <!-- <a href="#" class="kt-grid-nav-v2__item disabled">
+                   <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                   <div class="kt-grid-nav-v2__item-title">Informacion de Geofísica</div>
+                </a> -->
+                <!-- <a href="#" class="kt-grid-nav-v2__item disabled">
+                   <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                   <div class="kt-grid-nav-v2__item-title">Pozos de Desarrollo</div>
+                </a> -->
+                <!-- <a href="#" class="kt-grid-nav-v2__item disabled">
+                   <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                   <div class="kt-grid-nav-v2__item-title">Libros Blancos</div>
+                </a> -->
+            </div>
+            <div id="msj-sin-modulos" class="text-center hidden">
+                <i class="las la-info-circle text-60px margin-bottom-20px"></i>
+                <h5 class="text-dark">
+                    You don't have any administrative units, please contact an administrator to add one.
+                </h5>
+            </div>
+        </div>
+    </div>
+    <!-- end::Offcanvas Toolbar Quick Actions -->
+    <!-- begin::Offcanvas Toolbar Profile -->
+    <div id="kt_offcanvas_toolbar_profile" class="kt-offcanvas-panel">
+        <div class="kt-offcanvas-panel__head">
+            <h3 class="kt-offcanvas-panel__title">
+                <!-- User Account -->
+            </h3>
+            <a href="#" class="kt-offcanvas-panel__close" id="kt_offcanvas_toolbar_profile_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="kt-offcanvas-panel__body" style="margin-top: -20px;">
+            <div class="kt-user-card-v3">
+                <div class="kt-user-card-v3__avatar">
+                    <!-- <img src="/static/base/assets/media/users/default.jpg" alt="" /> -->
+
+                    <img class="rounded-circle" alt="Pic" src="~/images/default.jpg" />
+
+
+                </div>
+                <div class="kt-user-card-v3__detalis">
+                    <h4 class="kt-user-card-v3__name text-dark margin-bottom-5px">
+                        Leopoldo De los  Santos
+                    </h4>
+                    <div class="kt-user-card-v3__desc">
+                        <h5 class="margin-bottom-10px regular text-brand-hover">Department</h5>
+
+                    </div>
+                    <div class="kt-user-card-v3__info">
+                        <span href="#" class="kt-user-card-v3__item regular">
+                            llozano@praxis-soluciones.com
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="kt-separator kt-separator--space-md kt-separator--border-solid"></div> -->
+            <div class="kt-aside-menu aside-menu-perfil margin-0px">
+                <ul class="kt-menu__nav">
+                    <li class="kt-menu__section kt-menu__section--first">
+                        <h4 class="kt-menu__section-text">User administration</h4>
+                    </li>
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/2/update/">
+                            <i class="las la-user-circle"></i>
+                            <span class="kt-menu__link-text">Profile</span>
+                        </a>
+                    </li>
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/password-change/" class="kt-user-card-v3__item">
+                            <i class="las la-lock"></i>
+                            <span class="kt-menu__link-text">Password change</span>
+                        </a>
+                    </li>
+
+
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/logs/" class="kt-user-card-v3__item">
+                            <i class="las la-clipboard-list"></i>
+                            <span class="kt-menu__link-text">Logs</span>
+                        </a>
+                    </li>
+
+
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/logout/" class="kt-user-card-v3__item">
+                            <i class="las la-arrow-left"></i>
+                            <span class="kt-menu__link-text">Logout</span>
+                        </a>
+                    </li>
+                    <br>
+
+
+                    <li class="kt-menu__section kt-menu__section--first">
+                        <h4 class="kt-menu__section-text">Settings</h4>
+                    </li>
+                    <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="/accounts/list/" class="kt-menu__link ">
+                            <i class="las la-user-friends"></i>
+                            <span class="kt-menu__link-text">Users & Authentication</span>
+                        </a>
+                    </li>
+                    <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="/admin_unit/list/" class="kt-menu__link ">
+                            <i class="las la-university"></i>
+                            <span class="kt-menu__link-text">Departments</span>
+                        </a>
+                    </li>
+                    </br>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end::Offcanvas Toolbar Profile -->
+    <!-- end:: Topbar Offcanvas Panels -->
+    <!-- begin:: Scrolltop -->
+    <!-- <div id="kt_scrolltop" class="kt-scrolltop">
+       <i class="la la-arrow-up"></i>
+    </div> -->
+    <!-- end:: Scrolltop -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <!-- end::Global Config -->
+    <!--end::Global Theme Bundle -->
+
+    <a href="" id="ver-pdf-base" target="_blank"></a>
+
+    @*<script>
+            $(document).ready(function () {
+                $('#table-viewer-list').DataTable({
+                    "processing": true,
+                    "serverSide": true
+                });
+            });
+        </script>*@
+</div>

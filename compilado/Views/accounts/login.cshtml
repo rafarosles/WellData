@@ -1,0 +1,135 @@
+﻿    @{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="kt-login-v2--enabled kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-aside--enabled kt-aside--left kt-aside--fixed kt-aside--offcanvas-default kt-page--loading">
+
+    <!-- begin:: Page -->
+    <div class="kt-grid kt-grid--ver kt-grid--root">
+        <div class="kt-grid__item   kt-grid__item--fluid kt-grid  kt-grid kt-grid--hor kt-login-v2" id="kt_login_v2">
+
+            <!--begin::Item-->
+            <div class="kt-grid__item  kt-grid--hor">
+                <!--begin::Head-->
+                <div class="kt-login-v2__head justify-content-end">
+                    <div class="kt-login-v2__logo">
+                        <a href="#">
+                            <img src="~/images/logo-visor-h.png" alt="" style="height: 50px;" />
+                        </a>
+                    </div>
+                    <div class="kt-login-v2__signup">
+                    </div>
+                </div>
+                <!--begin::Head-->
+            </div>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <div class="kt-grid__item  kt-grid  kt-grid--ver  kt-grid__item--fluid">
+
+                <!--begin::Body-->
+                <div class="kt-login-v2__body">
+                    <!--begin::Image-->
+                    <div class="kt-login-v2__image d-none d-lg-flex">
+                        <img src="~/images/logo-visor.png" alt="logo-visor">
+                    </div>
+
+                    <!--begin::Image-->
+                    <!--begin::Wrapper-->
+                    <div class="kt-login-v2__wrapper">
+                        <div class="kt-login-v2__container">
+                            <div class="kt-login-v2__title margin-bottom-20px">
+
+                                <h3>Bienvenido</h3>
+
+                            </div>
+
+                            <div class="kt-login-v2__form kt-form">
+                                <div class="form-group">
+
+                                    <form action="/i18n/setlang/" method="post">
+                                        <input type="hidden" name="csrfmiddlewaretoken" value="DJTl5o3LelWcbtn86Jdy6Xq80cbpb0usVeg7HDN1yi6173GB1aP8AzJDRJLb1hxG">
+                                        <input name="next" type="hidden" value="/">
+                                        <!-- <select class="custom-select form-control-sm" type="button" name="language" onchange="this.form.submit();">
+
+
+
+
+                                        <option value="es-mx" >
+                                           Mexican Spanish (es-mx)
+                                        </option>
+
+                                        <option value="en"  selected >
+                                           English (en)
+                                        </option>
+
+                                        </select> -->
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <form class="kt-login-v2__form kt-form" method="post" autocomplete="off" id="form-validar-usuario">
+                                <div id="mensaje-error-usuario"></div>
+                                <input type="hidden" name="csrfmiddlewaretoken" value="DJTl5o3LelWcbtn86Jdy6Xq80cbpb0usVeg7HDN1yi6173GB1aP8AzJDRJLb1hxG">
+
+
+
+                                <div class="cjs-center-login">
+                                    <div class="form-group margin-bottom-30px">
+                                        <input ng-model="ctrl.username" class="form-control" type="text" placeholder="Correo" name="username" autocomplete="off" id="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input ng-model="ctrl.password"  class="form-control" type="password" placeholder="Contraseña" name="password" autocomplete="off" id="password">
+                                    </div>
+                                </div>
+                                <!--begin::Action-->
+                                <div class="kt-login-v2__actions">
+                                    <a href="#" class="kt-link kt-link--brand-hover">
+                                        @*Forgot Password ?*@
+                                    </a>
+                                    <a class="btn btn-brand-2" ng-click="ctrl.iniciar_sesion()" id="login">Iniciar Sesión</a>
+                                </div>
+
+                                <!--end::Action-->
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                    <!--end::Wrapper-->
+                </div>
+
+                <!--begin::Body-->
+            </div>
+
+            <!--end::Item-->
+            <!--begin::Item-->
+            <div class="kt-grid__item">
+                <div class="kt-login-v2__footer">
+                    <div class="kt-login-v2__link">
+                        <a href="/accounts/contact/" class="kt-link kt-font-brand">Contacto</a>
+                    </div>
+                    <div class="kt-login-v2__info">
+                        <a href="." class="kt-link">&copy; 2022 wellData</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--end::Item-->
+        </div>
+    </div>
+
+    <!-- end:: Page -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    @*<script src="~/Scripts/plugins.bundle.js"></script>
+    <script src="~/Scripts/js/scripts.bundle.js"></script>*@
+
+    <!--end::Global Theme Bundle -->
+
+    <!--begin::Page Scripts(used by this page) -->
+    <!--end::Page Scripts -->
+</body>

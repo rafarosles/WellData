@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base href="../../">
+    <meta charset="utf-8" />
+    <title>wellData</title>
+    <meta name="description" content="User Login">
+    <meta name="author" content="AGMA">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Content/login-v2.css" rel="stylesheet" />
+    <!--end::Page Custom Styles -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/Content/plugins.bundle.css" rel="stylesheet" />
+    <link href="~/Content/style.bundle.css" rel="stylesheet" />
+    <link href="~/Content/estilos.css" rel="stylesheet" />
+    <!--end::Global Theme Styles -->
+    <!--WEBFONTS -->
+    <link href="~/Content/line-awesome.css" rel="stylesheet" />
+    <!--begin::Layout Skins(used by all pages) -->
+    <link href="~/Content/navy.css" rel="stylesheet" />
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />    
+</head>
+<body>
+
+    <div ng-app="WellData" ng-controller="WellDataController as ctrl" class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>2022 wellData</p>
+        </footer>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+    @*<script src="~/Scripts/plugins.bundle.js"></script>
+        <script src="~/Scripts/js/scripts.bundle.js"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/global.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/Models/WellDataModel.js"></script>
+    <script src="~/Scripts/angular-pagination.js"></script>
+    <script src="~/Scripts/Controllers/WellDataController.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+</body>
+</html>

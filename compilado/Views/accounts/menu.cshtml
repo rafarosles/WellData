@@ -1,0 +1,480 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-aside--enabled kt-aside--left kt-aside--fixed kt-aside--offcanvas-default kt-page--loading">
+    <div class="cargador" hidden="">
+        <div class="cargador-div">
+            <span class="spinner-border" role="status" aria-hidden="true" style="color:#9D2449"></span>
+            <h3 class="loader-title">Espere un momento por favor</h3>
+        </div>
+    </div>
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+            <a href="/">
+                <img class="img-fluid" style="max-height: 44px;" alt="Logo" src="~/images/logo-visor-h-blanco.png" />
+                
+            </a>
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <!-- <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler">
+               <span></span>
+            </button> -->
+            <!-- <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler">
+               <i class="flaticon-more text-white"></i>
+            </button> -->
+            <a href="/" class="kt-header-mobile__toolbar-topbar-toggler">
+                <i class="las la-home text-white text-28px"></i>
+            </a>
+            <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler">
+                <i class="las la-ellipsis-v text-white text-28px"></i>
+            </button>
+        </div>
+    </div>
+    <!-- end:: Header Mobile -->
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item kt-grid kt-grid--ver  kt-header--fixed ">
+
+                    <!-- begin:: Brand -->
+                    <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
+                        <a href="/">
+                            <img class="img-fluid" alt="Logo" style="height: 40px;" src="~/images/logo-visor-h.png" />
+                        </a>
+                    </div>
+                    <!-- end:: Brand -->
+                    <!-- begin: Header Menu -->
+                    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn">
+                        <i class="la la-close"></i>
+                    </button>
+                    <div class="kt-header-menu-wrapper kt-grid__item" id="kt_header_menu_wrapper">
+                        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
+                            <ul class="kt-menu__nav ">
+                                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" aria-haspopup="true">
+                                    <a href="/accounts/menu" class="kt-menu__link btn-nav-bar">
+                                        <span class="kt-menu__link-text">
+                                            <i class="las la-home"></i>
+                                            Inicio
+                                        </span>
+                                    </a>
+                                </li>
+                                <!-- clase activado kt-menu__item--active -->
+                                <!-- <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" aria-haspopup="true">
+                                   <a id="kt_aside_toggler" class="kt-menu__link btn-nav-bar">
+                                      <span class="kt-menu__link-text">
+                                         <i class="las la-bars"></i>
+                                         Panel de control
+                                      </span>
+                                   </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end: Header Menu -->
+                    <!-- begin:: Header Topbar -->
+                    <div class="kt-header__topbar kt-grid__item kt-grid__item--fluid">
+                        <!--begin: Search -->
+                        <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown">
+                            <div class="kt-header__topbar-wrapper d-none" data-toggle="dropdown" data-offset="10px,0px">
+                                <span class="kt-header__topbar-icon"><i class="flaticon2-search-1"></i></span>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-top-unround dropdown-menu-anim dropdown-menu-lg">
+                                <div class="kt-quick-search kt-quick-search--dropdown kt-quick-search--result-compact" id="kt_quick_search_dropdown">
+                                    <form method="get" class="kt-quick-search__form">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="flaticon2-search-1"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control kt-quick-search__input" placeholder="Search...">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="la la-close kt-quick-search__close"></i></span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="kt-quick-search__wrapper kt-scroll" data-scroll="true" data-height="325" data-mobile-height="200">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Search -->
+                        <!--begin: Quick actions -->
+                        <div class="kt-header__topbar-item">
+                            <div class="kt-header__topbar-wrapper" id="kt_offcanvas_toolbar_quick_actions_toggler_btn">
+                                <span class="kt-header__topbar-icon">
+                                    <i class="las la-th-large"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!--end: Quick actions -->
+                        <!--begin: User bar -->
+                        <!--<div class="kt-header__topbar-item kt-header__topbar-item--user cursor-pointer"
+                             id="kt_offcanvas_toolbar_profile_toggler_btn">
+                            <div class="kt-header__topbar-welcome text-white">
+                                Welcome,
+                            </div>
+                            <div class="kt-header__topbar-username text-white">
+                                Leopoldo
+                            </div>
+                            <div class="kt-header__topbar-wrapper">-->
+                                <!-- <img alt="Pic" src="/static/base/assets/media/users/default.jpg" /> -->
+
+                                <!--<img alt="Pic" src="~/images/default.jpg" />
+
+                            </div>
+                        </div>-->
+                        <!--end: User bar -->
+                    </div>
+                    <!-- end:: Header Topbar -->
+                </div>
+                <!-- end:: Header -->
+                <!-- begin:: Subheader -->
+                <div id="kt_subheader" class="kt-subheader kt-grid__item ">
+                    <div class="kt-container  kt-container--fluid ">
+
+                        <!-- begin:: Subheader Title -->
+                        <div class="kt-subheader__title">
+                            <!-- <button class="kt-subheader__toggler kt-subheader__toggler--left" id="kt_aside_toggler">
+                               <span></span>
+                            </button> -->
+
+                            <div class="kt-subheader__breadcrumbs">
+                                <!-- <i class="flaticon-apps"></i> -->
+                                <!-- <span class="kt-subheader__breadcrumbs-separator"></span> -->
+                                <a href="" class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--home">Contenidos Técnicos</a>
+                            </div>
+
+                        </div>
+                        <!-- end:: Subheader Title -->
+                    </div>
+                </div>
+                <!-- end:: Subheader -->
+
+                <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+                    <!-- begin:: Content -->
+                    <div class="kt-container  kt-grid__item kt-grid__item--fluid">
+                        <!--begin::Dashboard 1-->
+                        <!--begin::Row-->
+
+                        <div id="con-modulos" class="row accesos-index">
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                <a href="/accounts/documento/">
+                                    <div class="kt-portlet kt-portlet--height-fluid kt-portlet-active">
+                                        <div class="kt-portlet__body">
+                                            <div class="square-icon">
+                                                <i class="las la-file-invoice"></i>
+                                            </div>
+                                            <h5 class="kt-widget-12__title text-dark margin-bottom-0px">
+                                                Expediente de pozos AETS.
+                                            </h5>
+                                            <span class="kt-widget-12__desc margin-bottom-0px margin-top-5px text-truncate d-none d-md-block text-gray regular">
+                                                Consultar
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                <a href="/accounts/informe">
+                                    <div class="kt-portlet kt-portlet--height-fluid kt-portlet-inactive">
+                                        <div class="kt-portlet__body">
+                                            <div class="square-icon">
+                                                <i class="las la-file-invoice"></i>
+                                            </div>
+                                            <h5 class="kt-widget-12__title text-dark margin-bottom-0px">
+                                                Estudios e Informes Técnicos
+                                            </h5>
+                                            <span class="kt-widget-12__desc margin-bottom-0px margin-top-5px text-truncate d-none d-md-block text-gray regular">
+                                                Consultar
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                               <a href="#" class="cjs-disabled">
+                                  <div class="kt-portlet kt-portlet--height-fluid kt-portlet-inactive">
+                                     <div class="kt-portlet__body">
+                                        <div class="square-icon disabled">
+                                           <i class="las la-file-invoice"></i>
+                                        </div>
+                                        <h5 class="kt-widget-12__title text-dark margin-bottom-0px">
+                                           Información de Geofísica
+                                        </h5>
+                                        <span class="kt-widget-12__desc margin-bottom-0px margin-top-5px text-truncate d-none d-md-block text-gray regular">
+                                           Consultar
+                                        </span>
+                                     </div>
+                                  </div>
+                               </a>
+                            </div> -->
+                            <!-- <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                               <a href="#" class="cjs-disabled">
+                                  <div class="kt-portlet kt-portlet--height-fluid kt-portlet-inactive">
+                                     <div class="kt-portlet__body">
+                                        <div class="square-icon disabled">
+                                           <i class="las la-file-invoice"></i>
+                                        </div>
+                                        <h5 class="kt-widget-12__title text-dark margin-bottom-0px">
+                                           Pozos de Desarrollo
+                                        </h5>
+                                        <span class="kt-widget-12__desc margin-bottom-0px margin-top-5px text-truncate d-none d-md-block text-gray regular">
+                                           Consultar
+                                        </span>
+                                     </div>
+                                  </div>
+                               </a>
+                            </div> -->
+                            <!-- <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                               <a href="#" class="cjs-disabled">
+                                  <div class="kt-portlet kt-portlet--height-fluid kt-portlet-inactive">
+                                     <div class="kt-portlet__body">
+                                        <div class="square-icon disabled">
+                                           <i class="las la-file-invoice"></i>
+                                        </div>
+                                        <h5 class="kt-widget-12__title text-dark margin-bottom-0px">
+                                           Libros Blancos
+                                        </h5>
+                                        <span class="kt-widget-12__desc margin-bottom-0px margin-top-5px text-truncate d-none d-md-block text-gray regular">
+                                           Consultar
+                                        </span>
+                                     </div>
+                                  </div>
+                               </a>
+                            </div> -->
+                        </div>
+                        <div id="sin-modulos" class="hidden">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="kt-portlet kt-portlet--height-fluid">
+                                        <div class="kt-portlet__body text-center">
+                                            <i class="las la-info-circle text-60px margin-bottom-20px"></i>
+                                            <h5 class="text-dark">
+                                                You don't have any administrative units, please contact an administrator to add one.
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end::Row-->
+                        <!--end::Dashboard 1-->
+                    </div>
+                    <!-- end:: Content -->
+                </div>
+
+                <!-- begin:: Footer -->
+                <!-- <div class="kt-footer kt-grid__item" id="kt_footer">
+                   <div class="kt-container ">
+                      <div class="kt-footer__copyright">
+                         <a href="http://www.gob.mx/fovissste" target="_blank" class="kt-link"> 2020 &copy;
+                            www.gob.mx/fovissste </a>
+                      </div>
+                      <div class="kt-footer__menu">
+                         <a href="https://www.gob.mx/privacidadintegral" target="_blank" class="kt-link">Aviso de privacidad
+                            integral</a>
+                         <a href="https://www.gob.mx/privacidadsimplificado" target="_blank" class="kt-link">Aviso de
+                            privacidad simplificado</a>
+                      </div>
+                   </div>
+                </div> -->
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+    <!-- end:: Page -->
+    <!-- begin:: Aside -->
+    <div class="kt-aside  kt-aside--fixed " id="kt_aside">
+        <div class="kt-aside__head">
+            <h3 class="kt-aside__title">
+                Dashboard
+            </h3>
+            <a href="#" class="kt-aside__close" id="kt_aside_close"><i class="flaticon2-delete"></i></a>
+        </div>
+        <div class="kt-aside__body">
+            <!-- begin:: Aside Menu -->
+            <div class="kt-aside-menu-wrapper" id="kt_aside_menu_wrapper">
+                <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1">
+                    <ul class="kt-menu__nav ">
+                        <li class="kt-menu__section kt-menu__section--first">
+                            <h4 class="kt-menu__section-text"> Subdirección </h4>
+                            <i class="kt-menu__section-icon flaticon-more-v2"></i>
+                        </li>
+
+                        <li class="kt-menu__section ">
+                            <h4 class="kt-menu__section-text">Configuration</h4>
+                            <i class="kt-menu__section-icon flaticon-more-v2"></i>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="#" class="kt-menu__link ">
+                                <span class="kt-menu__link-text">Users & Authentication</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="#" class="kt-menu__link ">
+                                <span class="kt-menu__link-text">Authorization</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="/admin_unit/list/"
+                               class="kt-menu__link "><span class="kt-menu__link-text">Departments</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end:: Aside Menu -->
+        </div>
+    </div>
+    <!-- end:: Aside -->
+    <!-- begin:: Topbar Offcanvas Panels -->
+    <!-- begin::Offcanvas Toolbar Quick Actions -->
+    <div id="kt_offcanvas_toolbar_quick_actions" class="kt-offcanvas-panel">
+        <div class="kt-offcanvas-panel__head">
+            <h3 class="kt-offcanvas-panel__title">
+                Quick Actions
+            </h3>
+            <a href="#" class="kt-offcanvas-panel__close" id="kt_offcanvas_toolbar_quick_actions_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="kt-offcanvas-panel__body">
+            <div class="kt-grid-nav-v2 quick-actions-modules-custom" id="quick-actions-modules">
+                <a href="/admin_unit/list/documento/" class="kt-grid-nav-v2__item">
+                    <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                    <div class="kt-grid-nav-v2__item-title">Expediente de pozos AETS</div>
+                </a>
+                <a href="#" class="kt-grid-nav-v2__item disabled">
+                    <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                    <div class="kt-grid-nav-v2__item-title">Estudios e Informes Técnicos</div>
+                </a>
+                <!-- <a href="#" class="kt-grid-nav-v2__item disabled">
+                   <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                   <div class="kt-grid-nav-v2__item-title">Informacion de Geofísica</div>
+                </a> -->
+                <!-- <a href="#" class="kt-grid-nav-v2__item disabled">
+                   <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                   <div class="kt-grid-nav-v2__item-title">Pozos de Desarrollo</div>
+                </a> -->
+                <!-- <a href="#" class="kt-grid-nav-v2__item disabled">
+                   <div class="kt-grid-nav-v2__item-icon"><i class="la la-file-invoice"></i></div>
+                   <div class="kt-grid-nav-v2__item-title">Libros Blancos</div>
+                </a> -->
+            </div>
+            <div id="msj-sin-modulos" class="text-center hidden">
+                <i class="las la-info-circle text-60px margin-bottom-20px"></i>
+                <h5 class="text-dark">
+                    You don't have any administrative units, please contact an administrator to add one.
+                </h5>
+            </div>
+        </div>
+    </div>
+    <!-- end::Offcanvas Toolbar Quick Actions -->
+    <!-- begin::Offcanvas Toolbar Profile -->
+    <div id="kt_offcanvas_toolbar_profile" class="kt-offcanvas-panel">
+        <div class="kt-offcanvas-panel__head">
+            <h3 class="kt-offcanvas-panel__title">
+                <!-- User Account -->
+            </h3>
+            <a href="#" class="kt-offcanvas-panel__close" id="kt_offcanvas_toolbar_profile_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="kt-offcanvas-panel__body" style="margin-top: -20px;">
+            <div class="kt-user-card-v3">
+                <div class="kt-user-card-v3__avatar">
+                    <!-- <img src="/static/base/assets/media/users/default.jpg" alt="" /> -->
+
+                    <img class="rounded-circle" alt="Pic" src="~/images/default.jpg" />
+
+                </div>
+                <div class="kt-user-card-v3__detalis">
+                    <h4 class="kt-user-card-v3__name text-dark margin-bottom-5px">
+                        Leopoldo De los  Santos
+                    </h4>
+                    <div class="kt-user-card-v3__desc">
+                        <h5 class="margin-bottom-10px regular text-brand-hover">Department</h5>
+
+                    </div>
+                    <div class="kt-user-card-v3__info">
+                        <span href="#" class="kt-user-card-v3__item regular">
+                            llozano@praxis-soluciones.com
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="kt-separator kt-separator--space-md kt-separator--border-solid"></div> -->
+            <div class="kt-aside-menu aside-menu-perfil margin-0px">
+                <ul class="kt-menu__nav">
+                    <li class="kt-menu__section kt-menu__section--first">
+                        <h4 class="kt-menu__section-text">User administration</h4>
+                    </li>
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/2/update/">
+                            <i class="las la-user-circle"></i>
+                            <span class="kt-menu__link-text">Profile</span>
+                        </a>
+                    </li>
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/password-change/" class="kt-user-card-v3__item">
+                            <i class="las la-lock"></i>
+                            <span class="kt-menu__link-text">Password change</span>
+                        </a>
+                    </li>
+
+
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/logs/" class="kt-user-card-v3__item">
+                            <i class="las la-clipboard-list"></i>
+                            <span class="kt-menu__link-text">Logs</span>
+                        </a>
+                    </li>
+
+
+                    <li class="kt-menu__item  kt-menu__item" aria-haspopup="true">
+                        <a class="kt-menu__link" href="/accounts/logout/" class="kt-user-card-v3__item">
+                            <i class="las la-arrow-left"></i>
+                            <span class="kt-menu__link-text">Logout</span>
+                        </a>
+                    </li>
+                    <br>
+
+
+                    <li class="kt-menu__section kt-menu__section--first">
+                        <h4 class="kt-menu__section-text">Settings</h4>
+                    </li>
+                    <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="/accounts/list/" class="kt-menu__link ">
+                            <i class="las la-user-friends"></i>
+                            <span class="kt-menu__link-text">Users & Authentication</span>
+                        </a>
+                    </li>
+                    <li class="kt-menu__item " aria-haspopup="true">
+                        <a href="/admin_unit/list/" class="kt-menu__link ">
+                            <i class="las la-university"></i>
+                            <span class="kt-menu__link-text">Departments</span>
+                        </a>
+                    </li>
+                    <br>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end::Offcanvas Toolbar Profile -->
+    <!-- end:: Topbar Offcanvas Panels -->
+    <!-- begin:: Scrolltop -->
+    <!-- <div id="kt_scrolltop" class="kt-scrolltop">
+       <i class="la la-arrow-up"></i>
+    </div> -->
+    <!-- end:: Scrolltop -->
+</body>
