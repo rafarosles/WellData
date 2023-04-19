@@ -260,6 +260,174 @@ namespace WebApplication1.Models
                 return listComun;
             }
         }
+
+        public static List<WellData_Afectaciones> ObtenerGridAfectaciones(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                //SqlParameter param1 = new SqlParameter();
+                //param1.ParameterName = Parametros[0];
+                //param1.SqlDbType = SqlDbType.Int;
+                //param1.Value = Valores[0];
+                //add the parameter to the SqlCommand object
+                //cmd.Parameters.Add(param1);
+                //open connection
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+
+                }
+                conn.Open();
+                cmd.CommandTimeout = 60;
+
+                List<WellData_Afectaciones> listComun = new List<WellData_Afectaciones>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+
+                        objAfectaciones.Id                                  = dr.GetInt32(0);
+                        objAfectaciones.Id_Compania                         = dr.GetInt32(1);
+                        objAfectaciones.Compania                            = dr.GetString(2);
+                        objAfectaciones.Id_Proyecto                         = dr.GetInt32(3);
+                        objAfectaciones.Proyecto                            = dr.GetString(4);
+                        objAfectaciones.Num_Caja_Provicional                = dr.GetString(5);
+                        objAfectaciones.Num_Estimacion                      = dr.GetString(6);
+                        objAfectaciones.Num_Tomo                            = dr.GetString(7);
+                        objAfectaciones.Num_Dictamen                        = dr.GetString(8);
+                        objAfectaciones.Anio                                = dr.GetString(9);
+                        objAfectaciones.Nombre_Afectado                     = dr.GetString(10);
+                        objAfectaciones.Finiquito                           = dr.GetString(11);
+                        objAfectaciones.No_Permiso                          = dr.GetString(12);
+                        objAfectaciones.Fecha_Solicitud_Ficha_Pago          = dr.GetString(13);
+                        objAfectaciones.Fecha_Pago                          = dr.GetString(14);
+                        objAfectaciones.Predio_Parcela_Rancho               = dr.GetString(15);
+                        objAfectaciones.Id_Municipio                        = dr.GetInt32(16);
+                        objAfectaciones.Municipio                           = dr.GetString(17);
+                        objAfectaciones.Id_Estado                           = dr.GetInt32(18);
+                        objAfectaciones.Estado                              = dr.GetString(19);
+                        objAfectaciones.Id_Regimen                          = dr.GetInt32(20);
+                        objAfectaciones.Regimen                             = dr.GetString(21);
+                        objAfectaciones.Importe                             = dr.GetString(22);
+                        objAfectaciones.Afectacion                          = dr.GetString(23);
+                        objAfectaciones.Finiquito_x_Afectacion              = dr.GetString(24);
+                        objAfectaciones.Reporte_Danio                       = dr.GetString(25);
+                        objAfectaciones.Croquis_Plano_Estudio               = dr.GetString(26);
+                        objAfectaciones.Evidencia_Fotografica_Afectacion    = dr.GetString(27);
+                        objAfectaciones.Oficio_Deslinde                     = dr.GetString(28);
+                        objAfectaciones.Acuerdo_Permiso                     = dr.GetString(29);
+                        objAfectaciones.Ine                                 = dr.GetString(30);
+                        objAfectaciones.Copia_Ficha_Pago                    = dr.GetString(31);
+                        objAfectaciones.Observaciones                       = dr.GetString(32);
+                        listComun.Add(objAfectaciones);
+                    }
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return listComun;
+            }
+        }
+
+        public static List<WellData_Afectaciones> ObtenerGridAfectacionesPep(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                //SqlParameter param1 = new SqlParameter();
+                //param1.ParameterName = Parametros[0];
+                //param1.SqlDbType = SqlDbType.Int;
+                //param1.Value = Valores[0];
+                //add the parameter to the SqlCommand object
+                //cmd.Parameters.Add(param1);
+                //open connection
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+
+                }
+                conn.Open();
+                cmd.CommandTimeout = 60;
+
+                List<WellData_Afectaciones> listComun = new List<WellData_Afectaciones>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+
+                        objAfectaciones.Id = dr.GetInt32(0);
+                        objAfectaciones.Id_Compania = dr.GetInt32(1);
+                        objAfectaciones.Compania = dr.GetString(2);
+                        objAfectaciones.Id_Proyecto = dr.GetInt32(3);
+                        objAfectaciones.Proyecto = dr.GetString(4);
+                        objAfectaciones.Clave_Levantamiento_Sismologico = dr.GetDouble(5);
+                        objAfectaciones.Num_Caja = dr.GetString(6);
+                        objAfectaciones.Num_Siarp = dr.GetString(7);
+                        objAfectaciones.Anio = dr.GetString(8);
+                        objAfectaciones.Nombre_Afectado = dr.GetString(9);
+                        objAfectaciones.Folio = dr.GetString(10);
+                        objAfectaciones.Fecha_Solicitud_Ficha_Pago = dr.GetString(11);
+                        objAfectaciones.Fecha_Pago = dr.GetString(12);
+                        objAfectaciones.Comunidad = dr.GetString(13);
+                        objAfectaciones.Id_Municipio = dr.GetInt32(14);
+                        objAfectaciones.Municipio = dr.GetString(15);
+                        objAfectaciones.Id_Estado = dr.GetInt32(16);
+                        objAfectaciones.Estado = dr.GetString(17);
+                        objAfectaciones.Id_Regimen = dr.GetInt32(18);
+                        objAfectaciones.Regimen = dr.GetString(19);
+                        objAfectaciones.Importe = dr.GetString(20);
+                        objAfectaciones.Afectacion = dr.GetString(21);
+                        objAfectaciones.Recibo_Siarp_Firmas= dr.GetString(22);
+                        objAfectaciones.Copia_Finiquito_Afectaciones= dr.GetString(23);
+                        objAfectaciones.Copia_Ficha_Pago= dr.GetString(24);
+                        objAfectaciones.Ine = dr.GetString(25);
+                        objAfectaciones.Reporte_Danios = dr.GetString(26);
+                        objAfectaciones.Formato_Permiso_Servidumbre = dr.GetString(27);
+                        objAfectaciones.Documento_Acredita_Propiedad = dr.GetString(28);
+                        objAfectaciones.Croquis_Afectaciones = dr.GetString(29);
+                        objAfectaciones.Copia_Ubicacion_Plano_Estudio = dr.GetString(30);
+                        objAfectaciones.Copia_Oficio_Direccionamiento_Presupuestal = dr.GetString(31);
+                        objAfectaciones.Observaciones = dr.GetString(32);
+                        listComun.Add(objAfectaciones);
+                    }
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return listComun;
+            }
+        }
         public static List<WellData_Tx> ObtenerDetalleUwi(string SP, string[] Parametros, object[] Valores)
         {
             //set the connection string
@@ -529,8 +697,8 @@ namespace WebApplication1.Models
                         objDataRegistrosVer.Pozo = dr.GetString(4);
                         objDataRegistrosVer.Descripcion = dr.GetString(5);
                         objDataRegistrosVer.Escala = dr.GetString(6);
-                        objDataRegistrosVer.Cima = Convert.ToInt32(7);
-                        objDataRegistrosVer.Base = Convert.ToInt32(8);
+                        objDataRegistrosVer.Cima = dr.GetString(7);
+                        objDataRegistrosVer.Base = dr.GetString(8);
                         objDataRegistrosVer.Fecha_Registro = dr.GetString(9);
                         objDataRegistrosVer.Compania = dr.GetString(10);
                         objDataRegistrosVer.Estado_Fisico = dr.GetString(11);
@@ -546,6 +714,234 @@ namespace WebApplication1.Models
                 //close connection
                 conn.Close();
                 return listComun;
+            }
+        }
+
+        public static List<WellData_Afectaciones> ObtenerDetalleAfecationCia(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+                    /*SqlParameter param1 = new SqlParameter();
+                    param1.ParameterName = Parametros[i];
+                    param1.SqlDbType = SqlDbType.VarChar;
+                    param1.Value = Valores[i];
+                    //add the parameter to the SqlCommand object
+                    */
+
+                }
+                //open connection
+                conn.Open();
+
+                List<WellData_Afectaciones> list = new List<WellData_Afectaciones>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                while (dr.Read())
+                {
+                    WellData_Afectaciones objAfectacion = new WellData_Afectaciones();
+                    objAfectacion.Id_Compania                       = dr.GetInt32(0);
+                    objAfectacion.Id_Proyecto                       = dr.GetInt32(1);
+                    objAfectacion.Num_Caja_Provicional              = dr.GetString(2);
+                    objAfectacion.Num_Estimacion                    = dr.GetString(3);
+                    objAfectacion.Num_Tomo                          = dr.GetString(4);
+                    objAfectacion.Num_Dictamen                      = dr.GetString(5);
+                    objAfectacion.Anio                              = dr.GetString(6);
+                    objAfectacion.Nombre_Afectado                   = dr.GetString(7);
+                    objAfectacion.Finiquito                         = dr.GetString(8);
+                    objAfectacion.No_Permiso                        = dr.GetString(9);
+                    objAfectacion.Fecha_Solicitud_Ficha_Pago        = dr.GetString(10);
+                    objAfectacion.Fecha_Pago                        = dr.GetString(11);
+                    objAfectacion.Predio_Parcela_Rancho             = dr.GetString(12);
+                    objAfectacion.Id_Municipio                      = dr.GetInt32(13);
+                    objAfectacion.Id_Estado                         = dr.GetInt32(14);
+                    objAfectacion.Id_Regimen                        = dr.GetInt32(15);
+                    objAfectacion.Importe                           = dr.GetString(16);
+                    objAfectacion.Afectacion                        = dr.GetString(17);
+                    objAfectacion.Finiquito_x_Afectacion            = dr.GetString(18);
+                    objAfectacion.Reporte_Danios                    = dr.GetString(19);
+                    objAfectacion.Croquis_Plano_Estudio             = dr.GetString(20);
+                    objAfectacion.Evidencia_Fotografica_Afectacion  = dr.GetString(21);
+                    objAfectacion.Oficio_Deslinde                   = dr.GetString(22);
+                    objAfectacion.Acuerdo_Permiso                   = dr.GetString(23);
+                    objAfectacion.Ine                               = dr.GetString(24);
+                    objAfectacion.Copia_Ficha_Pago                  = dr.GetString(25);
+                    objAfectacion.Observaciones                     = dr.GetString(26);
+
+                    list.Add(objAfectacion);
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return list;
+            }
+        }
+
+        public static List<WellData_Afectaciones> ObtenerDetalleAfectacionCia(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+                    /*SqlParameter param1 = new SqlParameter();
+                    param1.ParameterName = Parametros[i];
+                    param1.SqlDbType = SqlDbType.VarChar;
+                    param1.Value = Valores[i];
+                    //add the parameter to the SqlCommand object
+                    */
+
+                }
+                //open connection
+                conn.Open();
+
+                List<WellData_Afectaciones> list = new List<WellData_Afectaciones>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                while (dr.Read())
+                {
+                    WellData_Afectaciones objAfectacion = new WellData_Afectaciones();
+                    objAfectacion.Compania = dr.GetString(0);
+                    objAfectacion.Proyecto = dr.GetString(1);
+                    objAfectacion.Num_Caja_Provicional = dr.GetString(2);
+                    objAfectacion.Num_Estimacion = dr.GetString(3);
+                    objAfectacion.Num_Tomo = dr.GetString(4);
+                    objAfectacion.Num_Dictamen = dr.GetString(5);
+                    objAfectacion.Anio = dr.GetString(6);
+                    objAfectacion.Nombre_Afectado = dr.GetString(7);
+                    objAfectacion.Finiquito = dr.GetString(8);
+                    objAfectacion.No_Permiso = dr.GetString(9);
+                    objAfectacion.Fecha_Solicitud_Ficha_Pago = dr.GetString(10);
+                    objAfectacion.Fecha_Pago = dr.GetString(11);
+                    objAfectacion.Predio_Parcela_Rancho = dr.GetString(12);
+                    objAfectacion.Municipio = dr.GetString(13);
+                    objAfectacion.Estado = dr.GetString(14);
+                    objAfectacion.Regimen = dr.GetString(15);
+                    objAfectacion.Importe = dr.GetString(16);
+                    objAfectacion.Afectacion = dr.GetString(17);
+                    objAfectacion.Finiquito_x_Afectacion = dr.GetString(18);
+                    objAfectacion.Reporte_Danios = dr.GetString(19);
+                    objAfectacion.Croquis_Plano_Estudio = dr.GetString(20);
+                    objAfectacion.Evidencia_Fotografica_Afectacion = dr.GetString(21);
+                    objAfectacion.Oficio_Deslinde = dr.GetString(22);
+                    objAfectacion.Acuerdo_Permiso = dr.GetString(23);
+                    objAfectacion.Ine = dr.GetString(24);
+                    objAfectacion.Copia_Ficha_Pago = dr.GetString(25);
+                    objAfectacion.Observaciones = dr.GetString(26);
+
+                    list.Add(objAfectacion);
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return list;
+            }
+        }
+
+        public static List<WellData_Afectaciones> ObtenerDetalleAfectacionPep(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+                    /*SqlParameter param1 = new SqlParameter();
+                    param1.ParameterName = Parametros[i];
+                    param1.SqlDbType = SqlDbType.VarChar;
+                    param1.Value = Valores[i];
+                    //add the parameter to the SqlCommand object
+                    */
+
+                }
+                //open connection
+                conn.Open();
+
+                List<WellData_Afectaciones> list = new List<WellData_Afectaciones>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                while (dr.Read())
+                {
+                    WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+                    objAfectaciones.Id = dr.GetInt32(0);
+                    objAfectaciones.Id_Compania = dr.GetInt32(1);
+                    objAfectaciones.Compania = dr.GetString(2);
+                    objAfectaciones.Id_Proyecto = dr.GetInt32(3);
+                    objAfectaciones.Proyecto = dr.GetString(4);
+                    objAfectaciones.Clave_Levantamiento_Sismologico = dr.GetDouble(5);
+                    objAfectaciones.Num_Caja = dr.GetString(6);
+                    objAfectaciones.Num_Siarp = dr.GetString(7);
+                    objAfectaciones.Anio = dr.GetString(8);
+                    objAfectaciones.Nombre_Afectado = dr.GetString(9);
+                    objAfectaciones.Folio = dr.GetString(10);
+                    objAfectaciones.Fecha_Solicitud_Ficha_Pago = dr.GetString(11);
+                    objAfectaciones.Fecha_Pago = dr.GetString(12);
+                    objAfectaciones.Comunidad = dr.GetString(13);
+                    objAfectaciones.Id_Municipio = dr.GetInt32(14);
+                    objAfectaciones.Municipio = dr.GetString(15);
+                    objAfectaciones.Id_Estado = dr.GetInt32(16);
+                    objAfectaciones.Estado = dr.GetString(17);
+                    objAfectaciones.Id_Regimen = dr.GetInt32(18);
+                    objAfectaciones.Regimen = dr.GetString(19);
+                    objAfectaciones.Importe = dr.GetString(20);
+                    objAfectaciones.Afectacion = dr.GetString(21);
+                    objAfectaciones.Recibo_Siarp_Firmas = dr.GetString(22);
+                    objAfectaciones.Copia_Finiquito_Afectaciones = dr.GetString(23);
+                    objAfectaciones.Copia_Ficha_Pago = dr.GetString(24);
+                    objAfectaciones.Ine = dr.GetString(25);
+                    objAfectaciones.Reporte_Danios = dr.GetString(26);
+                    objAfectaciones.Formato_Permiso_Servidumbre = dr.GetString(27);
+                    objAfectaciones.Documento_Acredita_Propiedad = dr.GetString(28);
+                    objAfectaciones.Croquis_Afectaciones = dr.GetString(29);
+                    objAfectaciones.Copia_Ubicacion_Plano_Estudio = dr.GetString(30);
+                    objAfectaciones.Copia_Oficio_Direccionamiento_Presupuestal = dr.GetString(31);
+                    objAfectaciones.Observaciones = dr.GetString(32);
+
+                    list.Add(objAfectaciones);
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return list;
             }
         }
     }

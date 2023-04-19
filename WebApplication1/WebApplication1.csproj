@@ -138,6 +138,7 @@
     <Compile Include="Models\Comun.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\ExeProcedimientos.cs" />
+    <Compile Include="Models\WellData_Afectaciones.cs" />
     <Compile Include="Models\WellData_Apartado.cs" />
     <Compile Include="Models\WellData_Campo.cs" />
     <Compile Include="Models\WellData_Cat_Veracruz.cs" />
@@ -3168,6 +3169,7 @@
     <Content Include="Views\accounts\documento.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\accounts\informe.cshtml" />
+    <Content Include="Views\accounts\afectaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

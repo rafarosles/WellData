@@ -214,7 +214,7 @@ namespace WebApplication1.Controllers
             p7  = p7 == "0" ? string.Empty : p7;       //nombre_pozo
             p8  = p8 == "0" ? string.Empty : p8;       //id_mnemonico
             p9  = p9 == "0" ? string.Empty : p9;       //apartado
-            p10 = p10 == "0" ? string.Empty : p10;     //estado
+            p10 = p10 == null ? string.Empty:p10;     //estado -- este parametro ya no se envia desde el front end
 
 
             objVeracruz.inai            = p1;
@@ -730,6 +730,7 @@ namespace WebApplication1.Controllers
             objRegistrosGeo.Pozo = p1;
             objRegistrosGeo.Region = region;
             objRegistrosGeo.Campo = string.Empty;
+            System.Web.HttpContext.Current.Session["SessionListaTxt"] = null;
             try
             {
                 List<Cat_Registros_Geo_Veracruz> listPrincipal = new List<Cat_Registros_Geo_Veracruz>();
@@ -748,7 +749,8 @@ namespace WebApplication1.Controllers
                                  where c.Id_Pozo.Equals(p1)
                                  select c;
                     result = result.ToList<Cat_Registros_Geo_Veracruz>();
-                    System.Web.HttpContext.Current.Session["SessionListCatTx_Filtrada"] = result;
+                    System.Web.HttpContext.Current.Session["SessionListaTxt"] = result;
+                    //System.Web.HttpContext.Current.Session["SessionListCatTx_Filtrada"] = result;
                 }
                 //if (p2 != "") //tipoInfo
                 //{
@@ -763,12 +765,11 @@ namespace WebApplication1.Controllers
                 //    Session["SessionListCatTx_Filtrada"] = result;
                 //}
 
-                list = (List<Cat_Registros_Geo_Veracruz>)Session["SessionListCatTx_Filtrada"];
+                //list = (List<Cat_Registros_Geo_Veracruz>)Session["SessionListCatTx_Filtrada"];
+                list = (List<Cat_Registros_Geo_Veracruz>)Session["SessionListaTxt"];
+                
                 objResultado.Error = false;
                 objResultado.Resultado = list;
-
-                System.Web.HttpContext.Current.Session["SessionListaTxt"] = list;
-
                 var jsonResult = Json(objResultado, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = int.MaxValue;
                 return jsonResult;
@@ -1147,7 +1148,314 @@ namespace WebApplication1.Controllers
             return Json(objResultado, JsonRequestBehavior.AllowGet);
         }
 
-        
+
+        // Metodos Vista Afectaciones//
+
+        public JsonResult ComboCompaniasCia()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboCompaniaCia();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboEstadoCia()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboEstadoCia();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboMunicipioCia(int estado)
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboMunicipioCia(estado);
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboProyectoCia()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboProyectoCia();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboRegimenCia()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboRegimenCia();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ComboCompaniaPep()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboCompaniaPep();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboEstadoPep()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboEstadoPep();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboMunicipioPep(int estado)
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboMunicipioPep(estado);
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboProyectoPep()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboProyectoPep();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult ComboRegimenPep()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboRegimenPep();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ObtenerGridAfectaciones(string p1, string p2, string p3, string p4, string p5)
+        {
+            ResultadoAfectaciones objResultado = new ResultadoAfectaciones();
+            WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+            try
+            {
+                p1 = p1 == "0" ? string.Empty : p1;       //compania
+                p2 = p2 == "0" ? string.Empty : p2;       //estado
+                p3 = p3 == "0" ? string.Empty : p3;       //municipio
+                p4 = p4 == "0" ? string.Empty : p4;       //proyecto
+                p5 = p5 == "0" ? string.Empty : p5;       //regimen
+
+
+                objAfectaciones.Compania = p1;
+                objAfectaciones.Estado = p2;
+                objAfectaciones.Municipio = p3;
+                objAfectaciones.Proyecto = p4;
+                objAfectaciones.Regimen = p5;
+
+                List<WellData_Afectaciones> list_informes_tec = new List<WellData_Afectaciones>();
+                List<WellData_Afectaciones> list = new List<WellData_Afectaciones>();
+
+                list_informes_tec = CursorDataContext.GridAfectacionesCia(objAfectaciones);
+                
+                objResultado.Resultado = list_informes_tec;
+                objResultado.Error = false;
+                var jsonResult = Json(objResultado, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ObtenerGridAfectacionesPep(string p1, string p2, string p3, string p4, string p5)
+        {
+            ResultadoAfectaciones objResultado = new ResultadoAfectaciones();
+            WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+            try
+            {
+                p1 = p1 == "0" ? string.Empty : p1;       //compania
+                p2 = p2 == "0" ? string.Empty : p2;       //estado
+                p3 = p3 == "0" ? string.Empty : p3;       //municipio
+                p4 = p4 == "0" ? string.Empty : p4;       //proyecto
+                p5 = p5 == "0" ? string.Empty : p5;       //regimen
+
+
+                objAfectaciones.Compania = p1;
+                objAfectaciones.Estado = p2;
+                objAfectaciones.Municipio = p3;
+                objAfectaciones.Proyecto = p4;
+                objAfectaciones.Regimen = p5;
+
+                List<WellData_Afectaciones> list_informes_tec = new List<WellData_Afectaciones>();
+                List<WellData_Afectaciones> list = new List<WellData_Afectaciones>();
+
+
+                list_informes_tec = CursorDataContext.GridAfectacionesPep(objAfectaciones);
+
+                objResultado.Error = false;
+                objResultado.Resultado = list_informes_tec;
+                var jsonResult = Json(objResultado, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ObtenerAfectacionCia(int id)
+        {
+            ResultadoAfectaciones objResultado = new ResultadoAfectaciones();
+            WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+            try
+            {
+                objAfectaciones.Id = id;
+                objResultado.Resultado = CursorDataContext.ObtenerAfectacionCia(objAfectaciones);
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ObtenerAfectacionPep(int id)
+        {
+            ResultadoAfectaciones objResultado = new ResultadoAfectaciones();
+            WellData_Afectaciones objAfectaciones = new WellData_Afectaciones();
+            try
+            {
+                objAfectaciones.Id = id;
+                objResultado.Resultado = CursorDataContext.ObtenerAfectacionPep(objAfectaciones);
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         // GET: accounts
         public ActionResult Index()
@@ -1190,6 +1498,18 @@ namespace WebApplication1.Controllers
             }
             else
                 return RedirectToAction("login", "accounts");
+        }
+
+        public ActionResult afectaciones()
+        {
+            ResultadoUsuario objResultado = new ResultadoUsuario();
+            objResultado = (ResultadoUsuario)System.Web.HttpContext.Current.Session["SessionLogin"];
+            if (System.Web.HttpContext.Current.Session["SessionLogin"] != null && objResultado.Error == false)
+            {
+                return View();
+            }
+            else
+                return RedirectToAction("afectaciones", "accounts");
         }
     }
 }

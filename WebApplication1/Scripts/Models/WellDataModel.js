@@ -36,6 +36,14 @@ var wellDataContext =
     listTipoExpInfoTec: [],
     listAniosInfoTec: [],
     listInformesTecnicos: [],
+    listCompaniasAfectaciones: [],
+    listEstadosAfectaciones: [],
+    listMunicipiosAfectaciones: [],
+    listProyectosAfectaciones: [],
+    listRegimenAfectaciones: [],
+    listAfectaciones: [],
+    listDetalleAfectacionCia: [],
+    listAfectacionesPep : [],
 
     obtenerCompoTipoInfo: function (callBackResult) {
         let self = this;
@@ -1142,5 +1150,498 @@ var wellDataContext =
                 /*$('#buscandoEmpresa').hide()*/
             }
         });
-    }
+    },
+
+    obtenerComboCompaniasCia: function (callBackResult) {
+        let self = this;
+        self.listCompaniasAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboCompaniasCia",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listCompaniasAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboEstadoCia: function (callBackResult) {
+        let self = this;
+        self.listEstadosAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboEstadoCia",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listEstadosAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboMunicipioCia: function (estado, callBackResult) {
+        let self = this;
+        self.listMunicipiosAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboMunicipioCia",
+            data: { estado },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listMunicipiosAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    ObtenerGridAfectaciones: function (compania, estado, municipio, proyecto, regimen, callBackResult) {
+        let self = this;
+        self.listAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ObtenerGridAfectaciones",
+            data: { p1:compania, p2:estado, p3:municipio, p4:proyecto, p5:regimen },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listAfectaciones.push({
+                            id: resp.Resultado[i].Id, Compania: resp.Resultado[i].Compania,
+                            Proyecto: resp.Resultado[i].Proyecto, Num_Caja_Provicional: resp.Resultado[i].Num_Caja_Provicional,
+                            Num_Estimacion: resp.Resultado[i].Num_Estimacion,
+                            Num_Tomo: resp.Resultado[i].Num_Tomo, Num_Dictamen: resp.Resultado[i].Num_Dictamen,
+                            Anio: resp.Resultado[i].Anio, Nombre_Afectado: resp.Resultado[i].Nombre_Afectado,
+                            Finiquito: resp.Resultado[i].Finiquito, No_Permiso: resp.Resultado[i].No_Permiso,
+                            Fecha_Solicitud_Ficha_Pago: resp.Resultado[i].Fecha_Solicitud_Ficha_Pago, Fecha_Pago: resp.Resultado[i].Fecha_Pago,
+                            Predio_Parcela_Rancho: resp.Resultado[i].Predio_Parcela_Rancho, Municipio: resp.Resultado[i].Municipio,
+                            Estado: resp.Resultado[i].Estado, Regimen: resp.Resultado[i].Regimen,
+                            Importe: resp.Resultado[i].Importe, Afectacion: resp.Resultado[i].Afectacion,
+                            Finiquito_x_Afectacion: resp.Resultado[i].Finiquito_x_Afectacion, Reporte_Danio: resp.Resultado[i].Reporte_Danio,
+                            Croquis_Plano_Estudio: resp.Resultado[i].Croquis_Plano_Estudio, Evidencia_Fotografica_Afectacion: resp.Resultado[i].Evidencia_Fotografica_Afectacion,
+                            Oficio_Deslinde: resp.Resultado[i].Oficio_Deslinde, Acuerdo_Permiso: resp.Resultado[i].Acuerdo_Permiso,
+                            Ine: resp.Resultado[i].Ine, Copia_Ficha_Pago: resp.Resultado[i].Copia_Ficha_Pago,
+                            Observaciones: resp.Resultado[i].Observaciones
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    ObtenerGridAfectacionesPep: function (compania, estado, municipio, proyecto, regimen, callBackResult) {
+        let self = this;
+        self.listAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ObtenerGridAfectacionesPep",
+            data: { p1: compania, p2: estado, p3: municipio, p4: proyecto, p5: regimen },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listAfectaciones.push({
+                            id: resp.Resultado[i].Id, Compania: resp.Resultado[i].Compania,
+                            Proyecto: resp.Resultado[i].Proyecto, Clave_Levantamiento_Sismologico: resp.Resultado[i].Clave_Levantamiento_Sismologico,
+                            Num_Caja: resp.Resultado[i].Num_Caja,
+                            Num_Siarp: resp.Resultado[i].Num_Siarp,
+                            Anio: resp.Resultado[i].Anio, Nombre_Afectado: resp.Resultado[i].Nombre_Afectado,
+                            Folio: resp.Resultado[i].Folio,
+                            Fecha_Solicitud_Ficha_Pago: resp.Resultado[i].Fecha_Solicitud_Ficha_Pago, Fecha_Pago: resp.Resultado[i].Fecha_Pago,
+                            Comunidad: resp.Resultado[i].Comunidad, Municipio: resp.Resultado[i].Municipio,
+                            Estado: resp.Resultado[i].Estado, Regimen: resp.Resultado[i].Regimen,
+                            Importe: resp.Resultado[i].Importe, Afectacion: resp.Resultado[i].Afectacion,
+                            Recibo_Siarp_Firmas: resp.Resultado[i].Recibo_Siarp_Firmas, Copia_Finiquito_Afectaciones: resp.Resultado[i].Copia_Finiquito_Afectaciones,
+                            Copia_Ficha_Pago: resp.Resultado[i].Copia_Ficha_Pago, Ine: resp.Resultado[i].Ine,
+                            Reporte_Danios: resp.Resultado[i].Reporte_Danios, Formato_Permiso_Servidumbre: resp.Resultado[i].Formato_Permiso_Servidumbre,
+                            Documento_Acredita_Propiedad: resp.Resultado[i].Documento_Acredita_Propiedad, Croquis_Afectaciones: resp.Resultado[i].Croquis_Afectaciones,
+                            Copia_Ubicacion_Plano_Estudio: resp.Resultado[i].Copia_Ubicacion_Plano_Estudio, Copia_Oficio_Direccionamiento_Presupuestal: resp.Resultado[i].Copia_Oficio_Direccionamiento_Presupuestal,
+                            Observaciones: resp.Resultado[i].Observaciones
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboProyectoCia: function ( callBackResult) {
+        let self = this;
+        self.listProyectosAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboProyectoCia",
+            data: { },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listProyectosAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboRegimenCia: function (callBackResult) {
+        let self = this;
+        self.listRegimenAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboRegimenCia",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listRegimenAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboCompaniaPep: function (callBackResult) {
+        let self = this;
+        self.listCompaniasAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboCompaniaPep",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listCompaniasAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboEstadoPep: function (callBackResult) {
+        let self = this;
+        self.listEstadosAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboEstadoPep",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listEstadosAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboMunicipioPep: function (estado, callBackResult) {
+        let self = this;
+        self.listMunicipiosAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboMunicipioPep",
+            data: { estado },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listMunicipiosAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboProyectoPep: function (callBackResult) {
+        let self = this;
+        self.listProyectosAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboProyectoPep",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listProyectosAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboRegimenPep: function (callBackResult) {
+        let self = this;
+        self.listRegimenAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboRegimenPep",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listRegimenAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerAfectacionCia: function (id, callBackResult) {
+        let self = this;
+        self.listDetalleAfectacionCia.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ObtenerAfectacionCia",
+            data: { id },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listDetalleAfectacionCia.push({
+                            id: resp.Resultado[i].Id, Compania: resp.Resultado[i].Compania,
+                            Proyecto: resp.Resultado[i].Proyecto, Num_Caja_Provicional: resp.Resultado[i].Num_Caja_Provicional,
+                            Num_Estimacion: resp.Resultado[i].Num_Estimacion,
+                            Num_Tomo: resp.Resultado[i].Num_Tomo, Num_Dictamen: resp.Resultado[i].Num_Dictamen,
+                            Anio: resp.Resultado[i].Anio, Nombre_Afectado: resp.Resultado[i].Nombre_Afectado,
+                            Finiquito: resp.Resultado[i].Finiquito, No_Permiso: resp.Resultado[i].No_Permiso,
+                            Fecha_Solicitud_Ficha_Pago: resp.Resultado[i].Fecha_Solicitud_Ficha_Pago, Fecha_Pago: resp.Resultado[i].Fecha_Pago,
+                            Predio_Parcela_Rancho: resp.Resultado[i].Predio_Parcela_Rancho, Municipio: resp.Resultado[i].Municipio,
+                            Estado: resp.Resultado[i].Estado, Regimen: resp.Resultado[i].Regimen,
+                            Importe: resp.Resultado[i].Importe, Afectacion: resp.Resultado[i].Afectacion,
+                            Finiquito_x_Afectacion: resp.Resultado[i].Finiquito_x_Afectacion, Reporte_Danio: resp.Resultado[i].Reporte_Danio,
+                            Croquis_Plano_Estudio: resp.Resultado[i].Croquis_Plano_Estudio, Evidencia_Fotografica_Afectacion: resp.Resultado[i].Evidencia_Fotografica_Afectacion,
+                            Oficio_Deslinde: resp.Resultado[i].Oficio_Deslinde, Acuerdo_Permiso: resp.Resultado[i].Acuerdo_Permiso,
+                            Ine: resp.Resultado[i].Ine, Copia_Ficha_Pago: resp.Resultado[i].Copia_Ficha_Pago,
+                            Observaciones: resp.Resultado[i].Observaciones, Reporte_Danios: resp.Resultado[i].Reporte_Danios
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    ObtenerAfectacionPep: function (id, callBackResult) {
+        let self = this;
+        self.listAfectacionesPep.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ObtenerAfectacionPep",
+            data: {id},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listAfectacionesPep.push({
+                            id: resp.Resultado[i].Id, Compania: resp.Resultado[i].Compania,
+                            Proyecto: resp.Resultado[i].Proyecto, Clave_Levantamiento_Sismologico: resp.Resultado[i].Clave_Levantamiento_Sismologico,
+                            Num_Caja: resp.Resultado[i].Num_Caja,
+                            Num_Siarp: resp.Resultado[i].Num_Siarp,
+                            Anio: resp.Resultado[i].Anio, Nombre_Afectado: resp.Resultado[i].Nombre_Afectado,
+                            Folio: resp.Resultado[i].Folio,
+                            Fecha_Solicitud_Ficha_Pago: resp.Resultado[i].Fecha_Solicitud_Ficha_Pago, Fecha_Pago: resp.Resultado[i].Fecha_Pago,
+                            Comunidad: resp.Resultado[i].Comunidad, Municipio: resp.Resultado[i].Municipio,
+                            Estado: resp.Resultado[i].Estado, Regimen: resp.Resultado[i].Regimen,
+                            Importe: resp.Resultado[i].Importe, Afectacion: resp.Resultado[i].Afectacion,
+                            Recibo_Siarp_Firmas: resp.Resultado[i].Recibo_Siarp_Firmas, Copia_Finiquito_Afectaciones: resp.Resultado[i].Copia_Finiquito_Afectaciones,
+                            Copia_Ficha_Pago: resp.Resultado[i].Copia_Ficha_Pago, Ine: resp.Resultado[i].Ine,
+                            Reporte_Danios: resp.Resultado[i].Reporte_Danios, Formato_Permiso_Servidumbre: resp.Resultado[i].Formato_Permiso_Servidumbre,
+                            Documento_Acredita_Propiedad: resp.Resultado[i].Documento_Acredita_Propiedad, Croquis_Afectaciones: resp.Resultado[i].Croquis_Afectaciones,
+                            Copia_Ubicacion_Plano_Estudio: resp.Resultado[i].Copia_Ubicacion_Plano_Estudio, Copia_Oficio_Direccionamiento_Presupuestal: resp.Resultado[i].Copia_Oficio_Direccionamiento_Presupuestal,
+                            Observaciones: resp.Resultado[i].Observaciones
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
 };

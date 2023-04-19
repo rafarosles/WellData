@@ -8,25 +8,25 @@
     app.controller('WellDataController', ['$scope', '$compile', function ($scope, $compile) {
 
         var self = this;
-        let listTipoInfo            = "";
-        let listApartados           = "";
-        let listCampo               = "";
-        let listClassPozo           = "";
-        let listUwi                 = "";
-        let listStatusPozo          = "";
-        let listNombrePozo          = "";
-        let listDatosPozo           = "";
-        let listDetalleMetadata     = "";
-        let listCadido              = "";
-        let listApartadoBloqueSur   = ''
-        let listCadidoBloqueSur     = ''
-        let listCampoBloqueSur      = ''
-        let listEdoDoctoBloqueSur   = ''
-        let listMneBloqueSur        = ''
+        let listTipoInfo = "";
+        let listApartados = "";
+        let listCampo = "";
+        let listClassPozo = "";
+        let listUwi = "";
+        let listStatusPozo = "";
+        let listNombrePozo = "";
+        let listDatosPozo = "";
+        let listDetalleMetadata = "";
+        let listCadido = "";
+        let listApartadoBloqueSur = ''
+        let listCadidoBloqueSur = ''
+        let listCampoBloqueSur = ''
+        let listEdoDoctoBloqueSur = ''
+        let listMneBloqueSur = ''
         let listNombrePozoBloqueSur = ''
-        let listUwiBloqueSur        = ''
-        let listEdoInfTecVer        = ''
-        let listTipoExpInfTecVer    = ''
+        let listUwiBloqueSur = ''
+        let listEdoInfTecVer = ''
+        let listTipoExpInfTecVer = ''
         let listRegistrosGeoVer = ''
         let listIdInformeInfTecVer = ''
         let listTipoInformeInfTecVer = ''
@@ -39,6 +39,14 @@
         let listInformesTecnicos = ''
         let tipo_metadata = 0
         let region_seleccionada = 0
+        let listCompaniasAfectaciones = '';
+        let listEstadosAfectaciones = '';
+        let listMunicipiosAfectaciones = '';
+        let listProyectosAfectaciones = '';
+        let listRegimenAfectaciones = '';
+        let listAfectaciones = '';
+        let listAfectaciones_pep = '';
+        let listDetalleAfectacionCia = '';
 
         this.iniciar_sesion = () => {
             wellDataContext.iniciarSesion(self.username, self.password, function (resp) {
@@ -98,7 +106,7 @@
                 document.getElementById('apartado').disabled = true
             }
             document.getElementById('region').disabled = false;
-        } 
+        }
 
         // Obtenemos la región de donde queremos hacer la busqueda (Veracruz / Bloque Sur)
         self.region_seleccionada = () => {
@@ -109,7 +117,7 @@
                 cargarDatos()
             else if (value === "2")
                 cargarDatosBloqueSur()
-        } 
+        }
 
         //Cargamos los combos para obteber la información de la región veracruz
         let cargarDatos = () => {
@@ -127,7 +135,7 @@
                 obtenerComboNombrePozo(region_seleccionada)
                 obtenerComboUwi(region_seleccionada)
                 obtenerComboCadido(region_seleccionada)
-                
+
             }
             else if (self.tipo_info_selected == 'R') {
                 obtenerComboNombrePozo(region_seleccionada)
@@ -170,7 +178,7 @@
                     default:
                         break;
                 }
-                $scope.$apply();                
+                $scope.$apply();
             });
         };
 
@@ -209,7 +217,7 @@
         };
 
         let obtenerComboClassPozo = (region_seleccionada) => {
-            wellDataContext.obtenerComboClassPozo(region_seleccionada,function (resp) {
+            wellDataContext.obtenerComboClassPozo(region_seleccionada, function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
                         self.listClassPozo = wellDataContext.listClassPozo
@@ -376,7 +384,7 @@
                 }
                 $scope.$apply();
             });
-        } 
+        }
 
         //Obtiene el checklist de cada registro mostrado en el grid de pozos
         this.obtenerDetalleMetadata = (id) => {
@@ -384,22 +392,22 @@
                 switch (resp.ressult) {
                     case "tgp":
                         self.listDetalleMetadata = wellDataContext.listDetalleMetadata
-                        self.inai_detalle           = self.listDetalleMetadata[0].inai
-                        self.uwi_detalle            = self.listDetalleMetadata[0].uwi
-                        self.nombre_doc_detalle     = self.listDetalleMetadata[0].nombre_archivo_dig
-                        self.ubicacion_detalle      = self.listDetalleMetadata[0].ubicacion
-                        self.caja_detalle           = self.listDetalleMetadata[0].no_caja
-                        self.tipo_info_detalle      = self.listDetalleMetadata[0].tipo_info
-                        self.class_pozo_detalle     = self.listDetalleMetadata[0].class_pozo
-                        self.status_pozo_detalle    = self.listDetalleMetadata[0].status_pozo
-                        self.campo_detalle          = self.listDetalleMetadata[0].campo
-                        self.nombre_pozo_detalle    = self.listDetalleMetadata[0].nombre_pozo
-                        self.mnemonico_detalle      = self.listDetalleMetadata[0].mnemonico
-                        self.apartado_detalle       = self.listDetalleMetadata[0].apartado
-                        self.total_hojas_detalle    = self.listDetalleMetadata[0].total_hojas
-                        self.total_pag_detalle      = self.listDetalleMetadata[0].no_total_paginas
-                        self.observaciones_detalle  = self.listDetalleMetadata[0].observaciones
-                        self.estado_detalle         = self.listDetalleMetadata[0].estado
+                        self.inai_detalle = self.listDetalleMetadata[0].inai
+                        self.uwi_detalle = self.listDetalleMetadata[0].uwi
+                        self.nombre_doc_detalle = self.listDetalleMetadata[0].nombre_archivo_dig
+                        self.ubicacion_detalle = self.listDetalleMetadata[0].ubicacion
+                        self.caja_detalle = self.listDetalleMetadata[0].no_caja
+                        self.tipo_info_detalle = self.listDetalleMetadata[0].tipo_info
+                        self.class_pozo_detalle = self.listDetalleMetadata[0].class_pozo
+                        self.status_pozo_detalle = self.listDetalleMetadata[0].status_pozo
+                        self.campo_detalle = self.listDetalleMetadata[0].campo
+                        self.nombre_pozo_detalle = self.listDetalleMetadata[0].nombre_pozo
+                        self.mnemonico_detalle = self.listDetalleMetadata[0].mnemonico
+                        self.apartado_detalle = self.listDetalleMetadata[0].apartado
+                        self.total_hojas_detalle = self.listDetalleMetadata[0].total_hojas
+                        self.total_pag_detalle = self.listDetalleMetadata[0].no_total_paginas
+                        self.observaciones_detalle = self.listDetalleMetadata[0].observaciones
+                        self.estado_detalle = self.listDetalleMetadata[0].estado
                         break;
                     case "notgp":
                         alert(resp.message);
@@ -454,7 +462,7 @@
             let region = e.value;
             let i = document.getElementById('tipo_info')
             let tipo = i.value;
-            wellDataContext.abrirDocumento(nombreDocumento, region, nombre_pozo, tipo,  function (resp) {
+            wellDataContext.abrirDocumento(nombreDocumento, region, nombre_pozo, tipo, function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
                         let source = resp.source //---> \ > /
@@ -491,8 +499,8 @@
             });
         }
 
-        
-        
+
+
         /*--------------------INFORME TÉCNICO VERACRUZ--------------------*/
 
         //Guardamos la región seleccionada
@@ -652,7 +660,7 @@
             });
         };
 
-        this.abrirDocumentoInfoTec = (nombreDocumento, nombre_pozo) => {            
+        this.abrirDocumentoInfoTec = (nombreDocumento, nombre_pozo) => {
             wellDataContext.abrirDocumentoInfoTec(nombreDocumento, nombre_pozo, function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
@@ -725,6 +733,334 @@
             });
         }
 
+        // Afectaciones
+        self.region_seleccionada_afectaciones = () => {
+            if (self.region === "1") {
+                obtenerComboCompaniasCia();
+                obtenerComboEstadoCia();
+                obtenerComboProyectoCia();
+                obtenerComboRegimenCia();
+            }
+            else if (self.region === "2") {
+                obtenerComboCompaniaPep();
+                obtenerComboEstadoPep();
+                obtenerComboProyectoPep();
+                obtenerComboRegimenPep();
+            }
+            
+        }
+
+        let obtenerComboCompaniasCia = () => {
+            wellDataContext.obtenerComboCompaniasCia( function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listCompaniasAfectaciones = wellDataContext.listCompaniasAfectaciones
+                        self.compania = self.listCompaniasAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboEstadoCia = () => {
+            wellDataContext.obtenerComboEstadoCia(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listEstadosAfectaciones = wellDataContext.listEstadosAfectaciones
+                        self.estado = self.listEstadosAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboMunicipioCia = (estado) => {
+            wellDataContext.obtenerComboMunicipioCia(estado, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listMunicipiosAfectaciones = wellDataContext.listMunicipiosAfectaciones
+                        self.municipio = self.listMunicipiosAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboProyectoCia = () => {
+            wellDataContext.obtenerComboProyectoCia(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listProyectosAfectaciones = wellDataContext.listProyectosAfectaciones;
+                        self.proyecto = self.listProyectosAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboRegimenCia = () => {
+            wellDataContext.obtenerComboRegimenCia(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listRegimenAfectaciones = wellDataContext.listRegimenAfectaciones
+                        self.regimen = self.listRegimenAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+
+        let obtenerComboCompaniaPep = () => {
+            wellDataContext.obtenerComboCompaniaPep(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listCompaniasAfectaciones = wellDataContext.listCompaniasAfectaciones
+                        self.compania = self.listCompaniasAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboEstadoPep = () => {
+            wellDataContext.obtenerComboEstadoPep(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listEstadosAfectaciones = wellDataContext.listEstadosAfectaciones
+                        self.estado = self.listEstadosAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboMunicipioPep = (estado) => {
+            wellDataContext.obtenerComboMunicipioPep(estado, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listMunicipiosAfectaciones = wellDataContext.listMunicipiosAfectaciones
+                        self.municipio = self.listMunicipiosAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboProyectoPep = () => {
+            wellDataContext.obtenerComboProyectoPep(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listProyectosAfectaciones = wellDataContext.listProyectosAfectaciones;
+                        self.proyecto = self.listProyectosAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboRegimenPep = () => {
+            wellDataContext.obtenerComboRegimenPep(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listRegimenAfectaciones = wellDataContext.listRegimenAfectaciones
+                        self.regimen = self.listRegimenAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        this.obtener_descripcion_cia = (id) => {
+            wellDataContext.obtenerAfectacionCia(id, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listDetalleAfectacionCia = wellDataContext.listDetalleAfectacionCia;
+                        self.nombre_compania_cia        = self.listDetalleAfectacionCia[0].Compania;
+                        self.proyecto_cia               = self.listDetalleAfectacionCia[0].Proyecto;
+                        self.no_caja_provicional        = self.listDetalleAfectacionCia[0].Num_Caja_Provicional;
+                        self.no_estimacion              = self.listDetalleAfectacionCia[0].Num_Estimacion;
+                        /*self.no_estacion              = self.listDetalleAfectacionCia[0].Num_Tomo;*/
+                        self.no_tomo                    = self.listDetalleAfectacionCia[0].Num_Tomo;
+                        self.no_dictamen                = self.listDetalleAfectacionCia[0].Num_Dictamen;
+                        self.anio                       = self.listDetalleAfectacionCia[0].Anio;
+                        self.afectado                   = self.listDetalleAfectacionCia[0].Nombre_Afectado;
+                        self.finiquito                  = self.listDetalleAfectacionCia[0].Finiquito;
+                        self.permiso                    = self.listDetalleAfectacionCia[0].No_Permiso;
+                        self.fecha_solicitud_ficha_pago = self.listDetalleAfectacionCia[0].Fecha_Solicitud_Ficha_Pago;
+                        self.fecha_pago                 = self.listDetalleAfectacionCia[0].Fecha_Pago;
+                        self.predio_parecela_rancho     = self.listDetalleAfectacionCia[0].Predio_Parcela_Rancho;
+                        self.municipio                  = self.listDetalleAfectacionCia[0].Municipio;
+                        self.estado                     = self.listDetalleAfectacionCia[0].Estado;
+                        self.regimen                    = self.listDetalleAfectacionCia[0].Regimen;
+                        self.importe                    = self.listDetalleAfectacionCia[0].Importe;
+                        self.afectaciones               = self.listDetalleAfectacionCia[0].Afectacion;
+                        self.finiquito_afectaciones     = self.listDetalleAfectacionCia[0].Finiquito_x_Afectacion;
+                        self.reporte_danios             = self.listDetalleAfectacionCia[0].Reporte_Danios;
+                        self.croquis_plano              = self.listDetalleAfectacionCia[0].Croquis_Plano_Estudio;
+                        self.evidencia_fotografica      = self.listDetalleAfectacionCia[0].Evidencia_Fotografica_Afectacion;
+                        self.oficio_deslinde            = self.listDetalleAfectacionCia[0].Oficio_Deslinde;
+                        self.acuerdo_permiso            = self.listDetalleAfectacionCia[0].Acuerdo_Permiso;
+                        self.ine                        = self.listDetalleAfectacionCia[0].Ine;
+                        self.copia_ficha_pago           = self.listDetalleAfectacionCia[0].Copia_Ficha_Pago;
+                        self.observaciones              = self.listDetalleAfectacionCia[0].Observaciones;
+
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        }
+
+        this.obtener_descripcion_pep = (id) => {
+            wellDataContext.ObtenerAfectacionPep(id, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listDetalleAfectacionCia = wellDataContext.listAfectacionesPep;
+                        self.nombre_compania_pep = self.listDetalleAfectacionCia[0].Compania;
+                        self.proyecto_pep = self.listDetalleAfectacionCia[0].Proyecto;
+                        /*self.clv_lev_sismologico = self.listDetalleAfectacionCia[0].Num_Caja_Provicional; 
+                        self.no_caja_pep = self.listDetalleAfectacionCia[0].Num_Estimacion; 
+                        self.no_siarp_pep = self.listDetalleAfectacionCia[0].Num_Tomo; */
+                        self.anio_pep = self.listDetalleAfectacionCia[0].Anio;
+                        self.afectado_pep = self.listDetalleAfectacionCia[0].Nombre_Afectado;
+                        self.folio_pep = self.listDetalleAfectacionCia[0].Folio;
+                        self.fecha_solicitud_ficha_pago_pep = self.listDetalleAfectacionCia[0].Fecha_Solicitud_Ficha_Pago;
+                        self.fecha_pago_pep = self.listDetalleAfectacionCia[0].Fecha_Pago;
+                        self.nombre_comunidad_pep = self.listDetalleAfectacionCia[0].Comunidad;
+                        self.municipio_pep = self.listDetalleAfectacionCia[0].Municipio;
+                        self.estado_pep = self.listDetalleAfectacionCia[0].Estado;
+                        self.regimen_pep = self.listDetalleAfectacionCia[0].Regimen;
+                        self.importe_pep = self.listDetalleAfectacionCia[0].Importe;
+                        self.afectaciones_pep = self.listDetalleAfectacionCia[0].Afectacion;
+                        self.recibo_siarp_pep = self.listDetalleAfectacionCia[0].Recibo_Siarp_Firmas;
+                        self.copia_finiquito_pep = self.listDetalleAfectacionCia[0].Copia_Finiquito_Afectaciones;
+                        self.copia_ficha_pago_pep = self.listDetalleAfectacionCia[0].Copia_Ficha_Pago;
+                        self.ine_pep = self.listDetalleAfectacionCia[0].Ine;
+                        self.reporte_danios_pep = self.listDetalleAfectacionCia[0].Reporte_Danios;
+                        self.formato_servidumbre_pep = self.listDetalleAfectacionCia[0].Formato_Permiso_Servidumbre;
+                        self.documento_acredita_prop_pep = self.listDetalleAfectacionCia[0].Documento_Acredita_Propiedad;
+                        self.copia_croquis_pep = self.listDetalleAfectacionCia[0].Croquis_Afectaciones;
+                        self.copia_ubicacion_pep = self.listDetalleAfectacionCia[0].Copia_Ubicacion_Plano_Estudio;
+                        self.copia_oficio_direccionamiento_pep = self.listDetalleAfectacionCia[0].Copia_Oficio_Direccionamiento_Presupuestal;
+                        self.observaciones_pep = self.listDetalleAfectacionCia[0].Observaciones;
+
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        }
+
+        self.estado_afeccion = () => {
+            if (self.estado !== null) {
+                if (self.region === "1")
+                    obtenerComboMunicipioCia(self.estado);
+                else if (self.region === "2")
+                    obtenerComboMunicipioPep(self.estado);
+            }
+        }
+
+        self.obtenerAfectaciones = () => {
+            if (self.region == 1)
+                obtenerAfectacionesCia();
+            else
+                obtenerAfectacionesPep()
+        }
+
+        let obtenerAfectacionesCia = () => {
+            wellDataContext.ObtenerGridAfectaciones(self.compania, self.estado, self.municipio, self.proyecto, self.regimen, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listAfectaciones = wellDataContext.listAfectaciones
+                        document.getElementById('div_tabla').style.display = 'block';
+                        document.getElementById('div_tabla_pep').style.display = 'hide';
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        }
+
+        let obtenerAfectacionesPep = () => {
+            wellDataContext.ObtenerGridAfectacionesPep(self.compania, self.estado, self.municipio, self.proyecto, self.regimen, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listAfectaciones_pep = wellDataContext.listAfectaciones
+                        document.getElementById('div_tabla').style.display = 'hide';
+                        document.getElementById('div_tabla_pep').style.display = 'block';
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        }
     }]);
 })();
 

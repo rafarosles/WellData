@@ -13,8 +13,8 @@ namespace WebApplication1.Models
         public string Pozo { get; set; }
         public string Descripcion { get; set; }
         public string Escala { get; set; }
-        public float Cima { get; set; }
-        public float Base { get; set; }
+        public string Cima { get; set; }
+        public string  Base { get; set; }
         public string Fecha_Registro { get; set; }
         public string Compania { get; set; }
         public string Estado_Fisico { get; set; }

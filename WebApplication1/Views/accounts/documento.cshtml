@@ -279,7 +279,7 @@
                                             @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
                                             <tr>
                                                 <td><i data-toggle="modal" data-target="#detalles-modal" class="fa fa-eye" ng-click="ctrl.obtenerDetalleMetadata(i.id)"></i></td>
-                                                <td><a ng-click="ctrl.abrirDocumento(i.nombre_archivo_dig, i.nombre_pozo)">{{i.nombre_archivo_dig}}</a></td>
+                                                <td><u><a ng-click="ctrl.abrirDocumento(i.nombre_archivo_dig, i.nombre_pozo)">{{i.nombre_archivo_dig}}</a></u></td>
                                                 <td>{{i.descripcion_mne}}</td>
                                                 <td>{{i.uwi}}</td>
                                             </tr>

@@ -291,5 +291,108 @@ namespace WebApplication1.Data
             return Lista;
         }
 
+        public static List<WellData_Afectaciones> GridAfectacionesCia(WellData_Afectaciones objAfectaciones)
+        {
+            string[] Parametros = { "@id_compania", "@id_proyecto", "@id_municipio", "@id_estado", "@id_regimen" };
+            object[] Valores = { objAfectaciones.Compania, objAfectaciones.Proyecto, objAfectaciones.Municipio, objAfectaciones.Estado, objAfectaciones.Regimen};
+            //string[] Parametros = { };
+            //object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerGridAfectaciones("dbo.NEURALOG_OBT_CAT_CIA_AFECTACIONES", Parametros, Valores);
+            return Lista;
+        }
+
+        public static List<WellData_Afectaciones> GridAfectacionesPep(WellData_Afectaciones objAfectaciones)
+        {
+            string[] Parametros = { "@id_compania", "@id_proyecto", "@id_municipio", "@id_estado", "@id_regimen" };
+            object[] Valores = { objAfectaciones.Compania, objAfectaciones.Proyecto, objAfectaciones.Municipio, objAfectaciones.Estado, objAfectaciones.Regimen };
+            //string[] Parametros = { };
+            //object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerGridAfectacionesPep("dbo.NEURALOG_OBT_CAT_PEP_AFECTACIONES", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboCompaniaCia()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_COMPANIA", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboEstadoCia()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_ESTADO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboMunicipioCia(int estado)
+        {
+            string[] Parametros = { "@id_estado" };
+            object[] Valores = { estado };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_MUNICIPIO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboProyectoCia()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_PROYECTO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboRegimenCia()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_REGIMEN", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboCompaniaPep()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_COMPANIA", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboEstadoPep()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_ESTADO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboMunicipioPep(int estado)
+        {
+            string[] Parametros = { "@id_estado" };
+            object[] Valores = { estado };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_MUNICIPIO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboProyectoPep()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_PROYECTO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Comun> ComboRegimenPep()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_REGIMEN", Parametros, Valores);
+            return Lista;
+        }
+        public static List<WellData_Afectaciones> ObtenerAfectacionCia(WellData_Afectaciones objAfectacion)
+        {
+            string[] Parametros = { "@id" };
+            object[] Valores = { objAfectacion.Id };
+            var Lista = ExeProcedimientos.ObtenerDetalleAfectacionCia("dbo.NEURALOG_OBT_AFECTACION_CIA_DETALLE", Parametros, Valores);
+            return Lista;
+        }
+        public static List<WellData_Afectaciones> ObtenerAfectacionPep(WellData_Afectaciones objAfectacion)
+        {
+            string[] Parametros = { "@id" };
+            object[] Valores = { objAfectacion.Id };
+            var Lista = ExeProcedimientos.ObtenerDetalleAfectacionPep("dbo.NEURALOG_OBT_AFECTACION_PEP_DETALLE", Parametros, Valores);
+            return Lista;
+        }
     }
 }
