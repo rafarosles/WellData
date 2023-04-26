@@ -729,7 +729,7 @@ namespace WebApplication1.Controllers
 
             objRegistrosGeo.Pozo = p1;
             objRegistrosGeo.Region = region;
-            objRegistrosGeo.Campo = string.Empty;
+            objRegistrosGeo.Campo = p2;
             System.Web.HttpContext.Current.Session["SessionListaTxt"] = null;
             try
             {
@@ -780,6 +780,18 @@ namespace WebApplication1.Controllers
                 objResultado.MensajeError = ex.Message;
                 objResultado.Resultado = null;
                 return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public void GridFilesRegistrosGeo(string name)
+        {
+            try
+            {
+                var archivos = System.IO.Directory.GetFiles(@"D:\registros-20230420T195739Z-001\registros\CAIMBA-12\PEMEX_CAIMBA_12_bhc_41.5_2900_02191973_CORRIDA1", ".*", System.IO.SearchOption.AllDirectories);                
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 

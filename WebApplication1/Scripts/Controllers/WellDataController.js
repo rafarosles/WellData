@@ -422,7 +422,7 @@
         // Obtiene información de los registros geofisicos por su region
         let obtenerGridRegistrosGeoVer = (region_documento) => {
             $('#btn-buscar').prop('disabled', true);
-            wellDataContext.obtenerGridRegistrosGeoVer(region_documento, this.nombrepozo, function (resp) {
+            wellDataContext.obtenerGridRegistrosGeoVer(region_documento, this.nombrepozo, this.campo, function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
                         self.listRegistrosGeoVer = wellDataContext.listRegistrosGeoVer
@@ -973,9 +973,9 @@
                         self.listDetalleAfectacionCia = wellDataContext.listAfectacionesPep;
                         self.nombre_compania_pep = self.listDetalleAfectacionCia[0].Compania;
                         self.proyecto_pep = self.listDetalleAfectacionCia[0].Proyecto;
-                        /*self.clv_lev_sismologico = self.listDetalleAfectacionCia[0].Num_Caja_Provicional; 
-                        self.no_caja_pep = self.listDetalleAfectacionCia[0].Num_Estimacion; 
-                        self.no_siarp_pep = self.listDetalleAfectacionCia[0].Num_Tomo; */
+                        self.clv_lev_sismologico = self.listDetalleAfectacionCia[0].Clave_Levantamiento_Sismologico;
+                        self.no_caja_pep = self.listDetalleAfectacionCia[0].Num_Caja;
+                        self.no_siarp_pep = self.listDetalleAfectacionCia[0].Num_Siarp; 
                         self.anio_pep = self.listDetalleAfectacionCia[0].Anio;
                         self.afectado_pep = self.listDetalleAfectacionCia[0].Nombre_Afectado;
                         self.folio_pep = self.listDetalleAfectacionCia[0].Folio;

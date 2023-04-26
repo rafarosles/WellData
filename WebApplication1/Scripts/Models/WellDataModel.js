@@ -715,7 +715,7 @@ var wellDataContext =
     },
 
     /*------------------- REGISTROS GEOFISICOS -----------------------*/
-    obtenerGridRegistrosGeoVer: function (region, nombre_pozo, callBackResult) {
+    obtenerGridRegistrosGeoVer: function (region, nombre_pozo, campo, callBackResult) {
         let self = this;
         self.listRegistrosGeoVer.length = 0;
         $.ajax({
@@ -724,7 +724,7 @@ var wellDataContext =
             },
             type: "GET",
             url: urlServer + "accounts/GridCatRegistrosGeoVer",
-            data: { region, p1: nombre_pozo },
+            data: { region, p1: nombre_pozo, p2: campo },
             success: function (resp) {
                 if (resp.Error === false) {
                     for (var i = 0; i < resp.Resultado.length; i++) {
