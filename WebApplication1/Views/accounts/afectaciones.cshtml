@@ -247,6 +247,7 @@
                                                 <th>Finiquito</th>
                                                 <th>No. Permiso</th>
                                                 <th>Predio / Parcela / Rancho</th>
+                                                <th>Documentos</th>
                                             </tr>
                                         </thead>
 
@@ -265,6 +266,7 @@
                                                 <td>{{i.Finiquito}}</td>
                                                 <td>{{i.No_Permiso}}</td>
                                                 <td>{{i.Predio_Parcela_Rancho}}</td>
+                                                <td><a ng-click="ctrl.abrirDocumentoAfectacion(i.Nombre_Afectado, i.Finiquito, i.Num_Caja_Provicional, i.Proyecto, i.Compania)" class="fa fa-file-pdf"> </a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -291,6 +293,7 @@
                                         <th>Nombre Afectado</th>
                                         <th>Folio</th>
                                         <th>Regimen</th>
+                                        <th>Documentos</th>
                                     </tr>
                                 </thead>
 
@@ -308,6 +311,7 @@
                                         <td>{{i.Nombre_Afectado}}</td>
                                         <td>{{i.Folio}}</td>
                                         <td>{{i.Regimen}}</td>
+                                        <td><a ng-click="ctrl.abrirDocumentoAfectacion(i.Nombre_Afectado, i.Folio, i.Clave_Levantamiento_Sismologico, i.Proyecto, i.Compania)" class="fa fa-file-pdf"> </a></td>
                                     </tr>
                                 </tbody>
                             </table>

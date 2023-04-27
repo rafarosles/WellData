@@ -55,16 +55,12 @@
                         location.replace(urlServer + 'accounts/menu')
                         break;
                     case "notgp":
-                        var error = `<div class="alert alert-warning fade show" role="alert">
-                                      <div class="alert-icon"><i class="flaticon-warning"></i></div>
-                                      <div class="alert-text">`+ ERROR + `</div>
-                                      <div class="alert-close">
-                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true"><i class="la la-close"></i></span>
-                                         </button>
-                                      </div>
-                                   </div>`
-                        $("#mensaje-error-usuario").append(error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Error en los datos de iniicio de sesión',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        })
                         break;
                     default:
                         break;
@@ -1051,6 +1047,27 @@
                         self.listAfectaciones_pep = wellDataContext.listAfectaciones
                         document.getElementById('div_tabla').style.display = 'hide';
                         document.getElementById('div_tabla_pep').style.display = 'block';
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        }
+
+        this.abrirDocumentoAfectacion = (afectado, folio, clave, proyecto, compania) => {
+            let nombreDocto = `${afectado}_${folio}`;
+            let carpeta = `${proyecto}_${clave}`;
+            wellDataContext.abrirDocumentoAfectacion(nombreDocto, compania, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        let source = resp.source //---> \ > /
+                        console.log(source)
+                        source = (resp.source).substr(27, resp.source.length)
+                        window.open(source, '_blank');
                         break;
                     case "notgp":
                         alert(resp.message);

@@ -1643,5 +1643,29 @@ var wellDataContext =
             }
         });
     },
+    abrirDocumentoAfectacion: function (nombreDocumento, compania, callBackResult) {
+        let self = this;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/AbrirDocumentoAfectacion",
+            data: { docto: nombreDocumento, compania: compania },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError, source: resp.Ruta_Archivo });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    }
 
 };

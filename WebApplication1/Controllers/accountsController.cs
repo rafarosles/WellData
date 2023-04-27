@@ -1160,6 +1160,29 @@ namespace WebApplication1.Controllers
             return Json(objResultado, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult AbrirDocumentoAfectacion(string docto, string compania)
+        {
+            ResultadoComun objResultado = new ResultadoComun();
+
+            string comp = compania == "PEP" ? "PEMEX/" : "COMPANIA/";       //compania;
+
+            string file_name = docto + ".pdf";
+
+            var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/WellData/AFECTACIONES_2023/"+ comp, file_name, System.IO.SearchOption.AllDirectories);
+            if (files.Length > 0)
+            {
+                objResultado.Error = false;
+                objResultado.MensajeError = string.Empty;
+                objResultado.Ruta_Archivo = files[0];
+            }
+            else
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = "No existe el archivo";
+            }
+            return Json(objResultado, JsonRequestBehavior.AllowGet);
+        }
+
 
         // Metodos Vista Afectaciones//
 
