@@ -1170,10 +1170,11 @@ namespace WebApplication1.Controllers
 
             var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/WellData/AFECTACIONES_2023/"+ comp, file_name, System.IO.SearchOption.AllDirectories);
 
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+
+            /*System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = files[0];
             proc.Start();
-            proc.Close();
+            proc.Close();*/
 
             if (files.Length > 0)
             {

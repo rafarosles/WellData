@@ -731,23 +731,38 @@
         }
 
         // Afectaciones
+
         self.region_seleccionada_afectaciones = () => {
-            if (self.region === "1") {
-                obtenerComboCompaniasCia();
-                obtenerComboEstadoCia();
-                obtenerComboProyectoCia();
-                obtenerComboRegimenCia();
-                //obtenerComboAfectadoCia();
-            }
-            else if (self.region === "2") {
-                obtenerComboCompaniaPep();
-                obtenerComboEstadoPep();
-                obtenerComboProyectoPep();
-                obtenerComboRegimenPep();
-                //obtenerComboAfectadoPep();
-            }
-            
+            if (self.region == "1")
+                cargarCombosCia();
+            else if (self.region == "2")
+                cargarCombosPep();
         }
+
+        this.reiniciarFiltrosAfectaciones = () => {
+            //let e = document.getElementById("region");
+            //let value = e.value;
+            //region_seleccionada = value
+            if (self.region === "1")
+                cargarCombosCia();
+            else if (self.region === "2")
+                cargarCombosPep
+        }
+
+        let cargarCombosCia = () => {
+            obtenerComboCompaniasCia();
+            obtenerComboEstadoCia();
+            obtenerComboProyectoCia();
+            obtenerComboRegimenCia();
+            //obtenerComboAfectadoCia();
+        };
+        let cargarCombosPep = () => {
+            obtenerComboCompaniaPep();
+            obtenerComboEstadoPep();
+            obtenerComboProyectoPep();
+            obtenerComboRegimenPep();
+            //obtenerComboAfectadoPep();
+        };
 
         let obtenerComboCompaniasCia = () => {
             wellDataContext.obtenerComboCompaniasCia( function (resp) {
@@ -954,6 +969,8 @@
             });
         };
 
+
+
         this.obtener_descripcion_cia = (id) => {
             wellDataContext.obtenerAfectacionCia(id, function (resp) {
                 switch (resp.ressult) {
@@ -973,8 +990,8 @@
                         self.fecha_solicitud_ficha_pago = self.listDetalleAfectacionCia[0].Fecha_Solicitud_Ficha_Pago;
                         self.fecha_pago                 = self.listDetalleAfectacionCia[0].Fecha_Pago;
                         self.predio_parecela_rancho     = self.listDetalleAfectacionCia[0].Predio_Parcela_Rancho;
-                        self.municipio                  = self.listDetalleAfectacionCia[0].Municipio;
-                        self.estado                     = self.listDetalleAfectacionCia[0].Estado;
+                        self.municipiocia                  = self.listDetalleAfectacionCia[0].Municipio;
+                        self.estadocia                     = self.listDetalleAfectacionCia[0].Estado;
                         self.regimen                    = self.listDetalleAfectacionCia[0].Regimen;
                         self.importe                    = self.listDetalleAfectacionCia[0].Importe;
                         self.afectaciones               = self.listDetalleAfectacionCia[0].Afectacion;

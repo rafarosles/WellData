@@ -1714,7 +1714,6 @@ var wellDataContext =
         let self = this;
         $.ajax({
             beforeSend: function () {
-                /*$('#buscandoEmpresa').show()*/
             },
             type: "GET",
             url: urlServer + "accounts/AbrirDocumentoAfectacion",
@@ -1730,7 +1729,6 @@ var wellDataContext =
                 callBackResult({ ressult: 'notgp', message: ex });
             },
             complete: function () {
-                /*$('#buscandoEmpresa').hide()*/
             }
         });
     }
