@@ -818,7 +818,7 @@
         };
 
         let obtenerComboRegimenCia = () => {
-            wellDataContext.obtenerComboAfectadoCia(function (resp) {
+            wellDataContext.obtenerComboRegimenCia(function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
                         self.listRegimenAfectaciones = wellDataContext.listRegimenAfectaciones
