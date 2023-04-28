@@ -44,6 +44,7 @@ var wellDataContext =
     listAfectaciones: [],
     listDetalleAfectacionCia: [],
     listAfectacionesPep : [],
+    listAfectadoAfectaciones: [],
 
     obtenerCompoTipoInfo: function (callBackResult) {
         let self = this;
@@ -1250,6 +1251,7 @@ var wellDataContext =
         self.listAfectaciones.length = 0;
         $.ajax({
             beforeSend: function () {
+                $('.lds-spinner').show()
                 /*$('#buscandoEmpresa').show()*/
             },
             type: "GET",
@@ -1285,7 +1287,7 @@ var wellDataContext =
                 callBackResult({ ressult: 'notgp', message: ex });
             },
             complete: function () {
-                /*$('#buscandoEmpresa').hide()*/
+                $('.lds-spinner').hide();
             }
         });
     },
@@ -1295,6 +1297,7 @@ var wellDataContext =
         self.listAfectaciones.length = 0;
         $.ajax({
             beforeSend: function () {
+                $('.lds-spinner').show()
                 /*$('#buscandoEmpresa').show()*/
             },
             type: "GET",
@@ -1331,6 +1334,7 @@ var wellDataContext =
                 callBackResult({ ressult: 'notgp', message: ex });
             },
             complete: function () {
+                $('.lds-spinner').hide()
                 /*$('#buscandoEmpresa').hide()*/
             }
         });
@@ -1553,6 +1557,68 @@ var wellDataContext =
         });
     },
 
+    obtenerComboAfectadoCia: function (callBackResult) {
+        let self = this;
+        self.listAfectadoAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboAfectadoCia",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listAfectadoAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
+    obtenerComboAfectadoPep: function (callBackResult) {
+        let self = this;
+        self.listAfectadoAfectaciones.length = 0;
+        $.ajax({
+            beforeSend: function () {
+                /*$('#buscandoEmpresa').show()*/
+            },
+            type: "GET",
+            url: urlServer + "accounts/ComboAfectadoPep",
+            data: {},
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listAfectadoAfectaciones.push({
+                            id: resp.Resultado[i].Id, descripcion: resp.Resultado[i].Descripcion
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+                /*$('#buscandoEmpresa').hide()*/
+            }
+        });
+    },
+
     obtenerAfectacionCia: function (id, callBackResult) {
         let self = this;
         self.listDetalleAfectacionCia.length = 0;
@@ -1643,6 +1709,7 @@ var wellDataContext =
             }
         });
     },
+
     abrirDocumentoAfectacion: function (nombreDocumento, compania, callBackResult) {
         let self = this;
         $.ajax({

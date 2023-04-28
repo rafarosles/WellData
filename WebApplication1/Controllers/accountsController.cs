@@ -1282,6 +1282,46 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public JsonResult ComboAfectadoCia()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboAfectadoCia();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ComboAfectadoPep()
+        {
+            Comun objComun = new Comun();
+            ResultadoComun objResultado = new ResultadoComun();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ComboAfectadoPep();
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public JsonResult ComboCompaniaPep()
         {
             Comun objComun = new Comun();
@@ -1386,6 +1426,7 @@ namespace WebApplication1.Controllers
             {
                 p1 = p1 == "0" ? string.Empty : p1;       //compania
                 p2 = p2 == "0" ? string.Empty : p2;       //estado
+                p3 = p3 == null ? string.Empty : p3;       //municipio
                 p3 = p3 == "0" ? string.Empty : p3;       //municipio
                 p4 = p4 == "0" ? string.Empty : p4;       //proyecto
                 p5 = p5 == "0" ? string.Empty : p5;       //regimen
@@ -1425,6 +1466,7 @@ namespace WebApplication1.Controllers
             {
                 p1 = p1 == "0" ? string.Empty : p1;       //compania
                 p2 = p2 == "0" ? string.Empty : p2;       //estado
+                p3 = p3 == null ? string.Empty : p3;       //municipio
                 p3 = p3 == "0" ? string.Empty : p3;       //municipio
                 p4 = p4 == "0" ? string.Empty : p4;       //proyecto
                 p5 = p5 == "0" ? string.Empty : p5;       //regimen

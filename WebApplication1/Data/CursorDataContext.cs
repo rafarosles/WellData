@@ -345,6 +345,14 @@ namespace WebApplication1.Data
             var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_REGIMEN", Parametros, Valores);
             return Lista;
         }
+
+        public static List<Comun> ComboAfectadoCia()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_CIA_OBT_NOMBRE_AFECTADO", Parametros, Valores);
+            return Lista;
+        }
         public static List<Comun> ComboCompaniaPep()
         {
             string[] Parametros = { };
@@ -378,6 +386,14 @@ namespace WebApplication1.Data
             string[] Parametros = { };
             object[] Valores = { };
             var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_REGIMEN", Parametros, Valores);
+            return Lista;
+        }
+
+        public static List<Comun> ComboAfectadoPep()
+        {
+            string[] Parametros = { };
+            object[] Valores = { };
+            var Lista = ExeProcedimientos.ObtenerCombosParam("dbo.NEURALOG_PEP_OBT_NOMBRE_AFECTADO", Parametros, Valores);
             return Lista;
         }
         public static List<WellData_Afectaciones> ObtenerAfectacionCia(WellData_Afectaciones objAfectacion)

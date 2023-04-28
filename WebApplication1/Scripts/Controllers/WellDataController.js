@@ -47,6 +47,7 @@
         let listAfectaciones = '';
         let listAfectaciones_pep = '';
         let listDetalleAfectacionCia = '';
+        let listAfectadoAfectaciones = '';
 
         this.iniciar_sesion = () => {
             wellDataContext.iniciarSesion(self.username, self.password, function (resp) {
@@ -736,12 +737,14 @@
                 obtenerComboEstadoCia();
                 obtenerComboProyectoCia();
                 obtenerComboRegimenCia();
+                //obtenerComboAfectadoCia();
             }
             else if (self.region === "2") {
                 obtenerComboCompaniaPep();
                 obtenerComboEstadoPep();
                 obtenerComboProyectoPep();
                 obtenerComboRegimenPep();
+                //obtenerComboAfectadoPep();
             }
             
         }
@@ -815,11 +818,28 @@
         };
 
         let obtenerComboRegimenCia = () => {
-            wellDataContext.obtenerComboRegimenCia(function (resp) {
+            wellDataContext.obtenerComboAfectadoCia(function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
                         self.listRegimenAfectaciones = wellDataContext.listRegimenAfectaciones
                         self.regimen = self.listRegimenAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboAfectadoCia = () => {
+            wellDataContext.obtenerComboAfectadoCia(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listAfectadoAfectaciones = wellDataContext.listAfectadoAfectaciones
+                        self.nombre_afectado = self.listAfectadoAfectaciones[0].id
                         break;
                     case "notgp":
                         alert(resp.message);
@@ -906,6 +926,23 @@
                     case "tgp":
                         self.listRegimenAfectaciones = wellDataContext.listRegimenAfectaciones
                         self.regimen = self.listRegimenAfectaciones[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        let obtenerComboAfectadoPep = () => {
+            wellDataContext.obtenerComboAfectadoPep(function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listAfectadoAfectaciones = wellDataContext.listAfectadoAfectaciones
+                        self.nombre_afectado = self.listAfectadoAfectaciones[0].id
                         break;
                     case "notgp":
                         alert(resp.message);
@@ -1028,7 +1065,7 @@
                     case "tgp":
                         self.listAfectaciones = wellDataContext.listAfectaciones
                         document.getElementById('div_tabla').style.display = 'block';
-                        document.getElementById('div_tabla_pep').style.display = 'hide';
+                        document.getElementById('div_tabla_pep').style.display = 'none';
                         break;
                     case "notgp":
                         alert(resp.message);
@@ -1045,7 +1082,7 @@
                 switch (resp.ressult) {
                     case "tgp":
                         self.listAfectaciones_pep = wellDataContext.listAfectaciones
-                        document.getElementById('div_tabla').style.display = 'hide';
+                        document.getElementById('div_tabla').style.display = 'none';
                         document.getElementById('div_tabla_pep').style.display = 'block';
                         break;
                     case "notgp":

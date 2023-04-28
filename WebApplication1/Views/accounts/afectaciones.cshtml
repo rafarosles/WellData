@@ -212,6 +212,10 @@
                                             <label class="label">PROYECTOS</label>
                                             <select ng-model="ctrl.proyecto" ng-options="list.id as list.descripcion for list in ctrl.listProyectosAfectaciones" class="form-control form-control-sm global_filter select" id="mnemonico"></select>
                                         </div>
+                                        <div id="seccion_mne" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
+                                            <label class="label">AFECTADO</label>
+                                            <select ng-model="ctrl.nombre_afectado" ng-options="list.id as list.descripcion for list in ctrl.listAfectadoAfectaciones" class="form-control form-control-sm global_filter select" id="mnemonico"></select>
+                                        </div>
 
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 form-group filter_select">
                                         </div>
@@ -226,98 +230,100 @@
                                     <div class="kt-portlet__foot text-right">
                                         <button id="btn-buscar" ng-click="ctrl.obtenerAfectaciones()" type="button" class="btn btn-brand">Buscar</button>
                                     </div>
-                                </div>
 
-                                <div id="div_tabla" class="hidden">
+                                    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
+                                    <div id="div_tabla" class="hidden">
+                                        @*<button id="btn-txt-creator" ng-click="ctrl.crearTxt()" type="button" class="btn btn-brand">Generar TXT</button>*@
+                                        Buscar <input type="text" ng-model="ctrl.search" placeholder="Ingrese una busqueda..." />
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Compania</th>
+                                                    <th>Proyecto</th>
+                                                    <th>Nombre Afectado</th>
+                                                    <th>Núm. Caja</th>
+                                                    <th>Núm. Dictamen</th>
+                                                    <th>Año</th>
+                                                    <th>Nombre Afectado</th>
+                                                    <th>Finiquito</th>
+                                                    <th>No. Permiso</th>
+                                                    <th>Predio / Parcela / Rancho</th>
+                                                    <th>Documentos</th>
+                                                </tr>
+                                            </thead>
 
-                                    @*<button id="btn-txt-creator" ng-click="ctrl.crearTxt()" type="button" class="btn btn-brand">Generar TXT</button>*@
-                                    Buscar <input type="text" ng-model="ctrl.search" placeholder="Ingrese una busqueda..." />
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Compania</th>
-                                                <th>Proyecto</th>
-                                                <th>Nombre Afectado</th>
-                                                <th>Núm. Caja</th>
-                                                <th>Núm. Dictamen</th>
-                                                <th>Año</th>
-                                                <th>Nombre Afectado</th>
-                                                <th>Finiquito</th>
-                                                <th>No. Permiso</th>
-                                                <th>Predio / Parcela / Rancho</th>
-                                                <th>Documentos</th>
-                                            </tr>
-                                        </thead>
+                                            <tbody ng-pagination="i in ctrl.listAfectaciones| filter:ctrl.search| itemsPerPage: 10" pagination-id="PaginationGridAR">
+                                                @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
+                                                <tr>
+                                                    <td><i data-toggle="modal" data-target="#detalles-modal" class="fa fa-eye" ng-click="ctrl.obtener_descripcion_cia(i.id)"></i></td>
+                                                    @*<td><a ng-click="ctrl.abrirDocumento(i.nombre_archivo_dig, i.nombre_pozo)">{{i.nombre_archivo_dig}}</a></td>*@
+                                                    <td>{{i.Compania}}</td>
+                                                    <td>{{i.Proyecto}}</td>
+                                                    <td>{{i.Nombre_Afectado}}</td>
+                                                    <td>{{i.Num_Caja_Provicional}}</td>
+                                                    <td>{{i.Num_Dictamen}}</td>
+                                                    <td>{{i.Anio}}</td>
+                                                    <td>{{i.Nombre_Afectado}}</td>
+                                                    <td>{{i.Finiquito}}</td>
+                                                    <td>{{i.No_Permiso}}</td>
+                                                    <td>{{i.Predio_Parcela_Rancho}}</td>
+                                                    <td><a ng-click="ctrl.abrirDocumentoAfectacion(i.Nombre_Afectado, i.Finiquito, i.Num_Caja_Provicional, i.Proyecto, i.Compania)" class="fa fa-file-pdf"> </a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ng-pagination-control boundary-links="true" pagination-id="PaginationGridAR"></ng-pagination-control>
 
-                                        <tbody ng-pagination="i in ctrl.listAfectaciones| filter:ctrl.search| itemsPerPage: 10" pagination-id="PaginationGridAR">
-                                            @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
-                                            <tr>
-                                                <td><i data-toggle="modal" data-target="#detalles-modal" class="fa fa-eye" ng-click="ctrl.obtener_descripcion_cia(i.id)"></i></td>
-                                                @*<td><a ng-click="ctrl.abrirDocumento(i.nombre_archivo_dig, i.nombre_pozo)">{{i.nombre_archivo_dig}}</a></td>*@
-                                                <td>{{i.Compania}}</td>
-                                                <td>{{i.Proyecto}}</td>
-                                                <td>{{i.Nombre_Afectado}}</td>
-                                                <td>{{i.Num_Caja_Provicional}}</td>
-                                                <td>{{i.Num_Dictamen}}</td>
-                                                <td>{{i.Anio}}</td>
-                                                <td>{{i.Nombre_Afectado}}</td>
-                                                <td>{{i.Finiquito}}</td>
-                                                <td>{{i.No_Permiso}}</td>
-                                                <td>{{i.Predio_Parcela_Rancho}}</td>
-                                                <td><a ng-click="ctrl.abrirDocumentoAfectacion(i.Nombre_Afectado, i.Finiquito, i.Num_Caja_Provicional, i.Proyecto, i.Compania)" class="fa fa-file-pdf"> </a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <ng-pagination-control boundary-links="true" pagination-id="PaginationGridAR"></ng-pagination-control>
+                                    </div>
 
+                                    <div id="div_tabla_pep" class="hidden">
+                                        @*<button id="btn-txt-creator" ng-click="ctrl.crearTxt()" type="button" class="btn btn-brand">Generar TXT</button>*@
+                                        Buscar <input type="text" ng-model="ctrl.search" placeholder="Ingrese una busqueda..." />
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Compania</th>
+                                                    <th>Proyecto</th>
+                                                    <th>Nombre Afectado</th>
+                                                    <th>Núm. Caja</th>
+                                                    <th>Núm. SIARP</th>
+                                                    <th>Año</th>
+                                                    <th>Nombre Afectado</th>
+                                                    <th>Folio</th>
+                                                    <th>Regimen</th>
+                                                    <th>Documentos</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody ng-pagination="i in ctrl.listAfectaciones_pep| filter:ctrl.search| itemsPerPage: 10" pagination-id="PaginationGridAR">
+                                                @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
+                                                <tr>
+                                                    <td><i data-toggle="modal" data-target="#detalles-modal-pep" class="fa fa-eye" ng-click="ctrl.obtener_descripcion_pep(i.id)"></i></td>
+                                                    @*<td><a ng-click="ctrl.abrirDocumento(i.nombre_archivo_dig, i.nombre_pozo)">{{i.nombre_archivo_dig}}</a></td>*@
+                                                    <td>{{i.Compania}}</td>
+                                                    <td>{{i.Proyecto}}</td>
+                                                    <td>{{i.Nombre_Afectado}}</td>
+                                                    <td>{{i.Num_Caja}}</td>
+                                                    <td>{{i.Num_Siarp}}</td>
+                                                    <td>{{i.Anio}}</td>
+                                                    <td>{{i.Nombre_Afectado}}</td>
+                                                    <td>{{i.Folio}}</td>
+                                                    <td>{{i.Regimen}}</td>
+                                                    <td><a ng-click="ctrl.abrirDocumentoAfectacion(i.Nombre_Afectado, i.Folio, i.Clave_Levantamiento_Sismologico, i.Proyecto, i.Compania)" class="fa fa-file-pdf"> </a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ng-pagination-control boundary-links="true" pagination-id="PaginationGridAR"></ng-pagination-control>
+
+                                    </div>
                                 </div>
                             </div>
                             <a id="aux" href="" target="_blank"></a>
                         </div>
 
-                        <div id="div_tabla_pep" class="hidden">
-                            @*<button id="btn-txt-creator" ng-click="ctrl.crearTxt()" type="button" class="btn btn-brand">Generar TXT</button>*@
-                            Buscar <input type="text" ng-model="ctrl.search" placeholder="Ingrese una busqueda..." />
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Compania</th>
-                                        <th>Proyecto</th>
-                                        <th>Nombre Afectado</th>
-                                        <th>Núm. Caja</th>
-                                        <th>Núm. SIARP</th>
-                                        <th>Año</th>
-                                        <th>Nombre Afectado</th>
-                                        <th>Folio</th>
-                                        <th>Regimen</th>
-                                        <th>Documentos</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody ng-pagination="i in ctrl.listAfectaciones_pep| filter:ctrl.search| itemsPerPage: 10" pagination-id="PaginationGridAR">
-                                    @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
-                                    <tr>
-                                        <td><i data-toggle="modal" data-target="#detalles-modal-pep" class="fa fa-eye" ng-click="ctrl.obtener_descripcion_pep(i.id)"></i></td>
-                                        @*<td><a ng-click="ctrl.abrirDocumento(i.nombre_archivo_dig, i.nombre_pozo)">{{i.nombre_archivo_dig}}</a></td>*@
-                                        <td>{{i.Compania}}</td>
-                                        <td>{{i.Proyecto}}</td>
-                                        <td>{{i.Nombre_Afectado}}</td>
-                                        <td>{{i.Num_Caja}}</td>
-                                        <td>{{i.Num_Siarp}}</td>
-                                        <td>{{i.Anio}}</td>
-                                        <td>{{i.Nombre_Afectado}}</td>
-                                        <td>{{i.Folio}}</td>
-                                        <td>{{i.Regimen}}</td>
-                                        <td><a ng-click="ctrl.abrirDocumentoAfectacion(i.Nombre_Afectado, i.Folio, i.Clave_Levantamiento_Sismologico, i.Proyecto, i.Compania)" class="fa fa-file-pdf"> </a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <ng-pagination-control boundary-links="true" pagination-id="PaginationGridAR"></ng-pagination-control>
-
-                        </div>
+                        
                     </div>
                     <a id="aux" href="" target="_blank"></a>
                 </div>

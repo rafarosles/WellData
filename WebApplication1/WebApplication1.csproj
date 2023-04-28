@@ -158,6 +158,7 @@
     <Content Include="Content\estiloLogin.css" />
     <Content Include="Content\estilos.css" />
     <Content Include="Content\line-awesome.css" />
+    <Content Include="Content\loading.css" />
     <Content Include="Content\login-v2.css" />
     <Content Include="Content\navy.css" />
     <Content Include="Content\plugins.bundle.css" />
