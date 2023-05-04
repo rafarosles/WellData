@@ -446,6 +446,8 @@
         // Obtiene información de los registros geofisicos por su region
         let obtenerGridRegistrosGeoVer = (region_documento) => {
             $('#btn-buscar').prop('disabled', true);
+            if (this.nombrepozo != this.pozos_doctos)
+                this.nombrepozo = this.pozos_doctos
             wellDataContext.obtenerGridRegistrosGeoVer(region_documento, this.nombrepozo, this.campo, function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
