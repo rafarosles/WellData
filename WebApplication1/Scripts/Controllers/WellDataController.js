@@ -48,6 +48,8 @@
         let listAfectaciones_pep = '';
         let listDetalleAfectacionCia = '';
         let listAfectadoAfectaciones = '';
+        let listDoctosRegistrosGeofisicos = '';
+
 
         this.iniciar_sesion = () => {
             wellDataContext.iniciarSesion(self.username, self.password, function (resp) {
@@ -92,6 +94,7 @@
                 document.getElementById('class_pozo').disabled = false
                 document.getElementById('mnemonico').disabled = false
                 document.getElementById('apartado').disabled = false
+                document.getElementById('pozo_doctos').disabled = true;
             }
             else if (value === "2") {
                 self.tipo_info_selected = "R" // R = Registro Geofisicos
@@ -101,6 +104,7 @@
                 document.getElementById('class_pozo').disabled = true
                 document.getElementById('mnemonico').disabled = true
                 document.getElementById('apartado').disabled = true
+                document.getElementById('pozo_doctos').disabled = false;
             }
             document.getElementById('region').disabled = false;
         }
@@ -137,6 +141,7 @@
             else if (self.tipo_info_selected == 'R') {
                 obtenerComboNombrePozo(region_seleccionada)
                 obtenerComboCampo(region_seleccionada)
+                obtenerPozosDoctosRegGeo(region_seleccionada);
             }
         }
 
@@ -156,8 +161,9 @@
                 obtenerComboCadido(region_seleccionada)
             }
             else if (self.tipo_info_selected == 'R') {
-                obtenerComboNombrePozo(region_seleccionada)
-                obtenerComboCampo(region_seleccionada)
+                obtenerComboNombrePozo(region_seleccionada);
+                obtenerComboCampo(region_seleccionada);
+                obtenerPozosDoctosRegGeo(region_seleccionada);
             }
         }
 
@@ -332,6 +338,27 @@
             });
         };
 
+        let obtenerPozosDoctosRegGeo = (region_seleccionada) => {
+            wellDataContext.obtenerPozosDoctosRegGeo(region_seleccionada, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listDoctosRegistrosGeofisicos = wellDataContext.listPozosDoctosRegGeo
+                        self.pozos_doctos = self.listDoctosRegistrosGeofisicos[0].id
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        };
+
+        self.pozo_seleccionado = () => {
+            
+        }
+
         //Obtenemos el tipo de busqueda que se desea realizar (Tipo de información a buscar y la región a buscar)
         this.obtenerGridDatosPozo = () => {
             let i = document.getElementById("tipo_info");
@@ -496,6 +523,23 @@
             });
         }
 
+
+        this.consultarDoctos = (id) => {
+            wellDataContext.consultarDoctosGeofisicos(id, function (resp) {
+                switch (resp.ressult) {
+                    case "tgp":
+                        self.listDoctosRegistrosGeofisicos = wellDataContext.listDoctosRegistrosGeofisicos;
+                        self.nombre_archivo_reg_geo = self.listDoctosRegistrosGeofisicos[0].nombre_docto;
+                        break;
+                    case "notgp":
+                        alert(resp.message);
+                        break;
+                    default:
+                        break;
+                }
+                $scope.$apply();
+            });
+        }
 
 
         /*--------------------INFORME TÉCNICO VERACRUZ--------------------*/

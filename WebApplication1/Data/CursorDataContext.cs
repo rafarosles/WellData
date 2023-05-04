@@ -102,14 +102,26 @@ namespace WebApplication1.Data
             objUsuario = ExeProcedimientos.IniciarSesion("dbo.NEURALOG_OBT_USUARIO", Parametros, Valores);
             return objUsuario;
         }
-
-        
-
         public static List<WellData_Tx> ObtenerDetalleMetadata(WellData_Tx objTx)
         {
             string[] Parametros = { "id"};
             object[] Valores = { objTx.id };
             var Lista =  ExeProcedimientos.ObtenerDetalleMetadata("dbo.NEURALOG_OBT_CAT_EXPEDIENTE_DETALLE", Parametros, Valores);
+            return Lista;
+        }
+
+        public static List<Cat_Registros_Geo_Veracruz> ObtenerNombreDocumento(Cat_Registros_Geo_Veracruz objRegGeo)
+        {
+            string[] Parametros = { "@id_registro_geo" };
+            object[] Valores = { objRegGeo.Id };
+            var Lista = ExeProcedimientos.ObtenerNombreArchivos("dbo.NEURALOG_OBT_CAT_REG_GEO_NOM_DOCTO", Parametros, Valores);
+            return Lista;
+        }
+        public static List<Cat_Registros_Geo_Veracruz> ObtenerPozosDoctosRegGeo(string region)
+        {
+            string[] Parametros = { "@id_region " };
+            object[] Valores = { region };
+            var Lista = ExeProcedimientos.ObtenerPozosDoctosRegGeo("dbo.NEURALOG_OBT_CAT_REGISTROS_GEO_POZOS_DOCTOS", Parametros, Valores);
             return Lista;
         }
 

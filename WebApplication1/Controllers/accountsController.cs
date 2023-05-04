@@ -726,6 +726,7 @@ namespace WebApplication1.Controllers
             Cat_Registros_Geo_Veracruz objRegistrosGeo = new Cat_Registros_Geo_Veracruz();
             
             p1 = p1 == "0" ? string.Empty : p1;       //pozo
+            p2 = p2 == "0" ? string.Empty : p2;
 
             objRegistrosGeo.Pozo = p1;
             objRegistrosGeo.Region = region;
@@ -783,6 +784,45 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public JsonResult ConsultarDoctosGeofisicos (int id)
+        {
+            Cat_Registros_Geo_Veracruz objRegistrosGeo = new Cat_Registros_Geo_Veracruz();
+            Resultado_Registros_Geo_Veracruz objResultado = new Resultado_Registros_Geo_Veracruz();
+            objRegistrosGeo.Id = id;
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ObtenerNombreDocumento(objRegistrosGeo);
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ObtenerPozosDoctosRegGeo(string region)
+        {
+            Resultado_Registros_Geo_Veracruz objResultado = new Resultado_Registros_Geo_Veracruz();
+            try
+            {
+                objResultado.Resultado = CursorDataContext.ObtenerPozosDoctosRegGeo(region);
+                objResultado.Error = false;
+                objResultado.MensajeError = "";
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                objResultado.Error = true;
+                objResultado.MensajeError = ex.Message;
+                objResultado.Resultado = null;
+                return Json(objResultado, JsonRequestBehavior.AllowGet);
+            }
+        }
         public void GridFilesRegistrosGeo(string name)
         {
             try

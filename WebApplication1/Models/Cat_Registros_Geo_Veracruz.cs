@@ -7,7 +7,7 @@ namespace WebApplication1.Models
 {
     public class Cat_Registros_Geo_Veracruz
     {
-        public float Id { get; set; }
+        public int Id { get; set; }
         public string Campo { get; set; }
         public string Id_Pozo { get; set; }
         public string Pozo { get; set; }
@@ -22,7 +22,8 @@ namespace WebApplication1.Models
         public string Codigo_Caja { get; set; }
         public string Ubicacion { get; set; }
         public string Fecha_Inventario { get; set; }
-
+        public string Tiene_Documento { get; set; }
+        public string Nombre_Documento { get; set; }
         public string Region { get; set; }
     }
 

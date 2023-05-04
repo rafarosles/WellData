@@ -518,6 +518,99 @@ namespace WebApplication1.Models
                 return objUsuario;
             }
         }
+        public static List<Cat_Registros_Geo_Veracruz> ObtenerNombreArchivos(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+                    /*SqlParameter param1 = new SqlParameter();
+                    param1.ParameterName = Parametros[i];
+                    param1.SqlDbType = SqlDbType.VarChar;
+                    param1.Value = Valores[i];
+                    //add the parameter to the SqlCommand object
+                    */
+
+                }
+                //open connection
+                conn.Open();
+
+                List<Cat_Registros_Geo_Veracruz> list = new List<Cat_Registros_Geo_Veracruz>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                while (dr.Read())
+                {
+                    Cat_Registros_Geo_Veracruz objRegGeo = new Cat_Registros_Geo_Veracruz();
+                    objRegGeo.Nombre_Documento = dr.GetString(0);
+                    list.Add(objRegGeo);
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return list;
+            }
+        }
+        public static List<Cat_Registros_Geo_Veracruz> ObtenerPozosDoctosRegGeo(string SP, string[] Parametros, object[] Valores)
+        {
+            //set the connection string
+            string connString = @"Server =.\SQLEXPRESS; Database = Well_Data; user id = sa; password = 12345";
+            //sql connection object
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //set stored procedure name
+                string spName = SP;
+                //string spName = @"dbo.[WELLDATA_OBT_APARTADO]";
+                //define the SqlCommand object
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                //Set SqlParameter - the employee id parameter value will be set from the command line
+                for (int i = 0; i < Parametros.Length; i++)
+                {
+                    cmd.Parameters.Add(Parametros[i], SqlDbType.VarChar);
+                    cmd.Parameters[Parametros[i]].Value = Valores[i];
+                    /*SqlParameter param1 = new SqlParameter();
+                    param1.ParameterName = Parametros[i];
+                    param1.SqlDbType = SqlDbType.VarChar;
+                    param1.Value = Valores[i];
+                    //add the parameter to the SqlCommand object
+                    */
+
+                }
+                //open connection
+                conn.Open();
+
+                List<Cat_Registros_Geo_Veracruz> list = new List<Cat_Registros_Geo_Veracruz>();
+                //set the SqlCommand type to stored procedure and execute
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader dr = cmd.ExecuteReader();
+                //check if there are records
+                while (dr.Read())
+                {
+                    Cat_Registros_Geo_Veracruz objRegGeo = new Cat_Registros_Geo_Veracruz();
+                    objRegGeo.Id_Pozo = dr.GetString(0);
+                    objRegGeo.Pozo = dr.GetString(1);
+                    list.Add(objRegGeo);
+                }
+                //close data reader
+                dr.Close();
+                //close connection
+                conn.Close();
+                return list;
+            }
+        }
         public static List<WellData_Tx> ObtenerDetalleMetadata(string SP, string[] Parametros, object[] Valores)
         {
             //set the connection string
@@ -691,7 +784,7 @@ namespace WebApplication1.Models
                     {
                         Cat_Registros_Geo_Veracruz objDataRegistrosVer = new Cat_Registros_Geo_Veracruz();
 
-                        objDataRegistrosVer.Id = Convert.ToInt32(0);
+                        objDataRegistrosVer.Id = dr.GetInt32(0);
                         objDataRegistrosVer.Campo = dr.GetString(2);
                         objDataRegistrosVer.Id_Pozo = dr.GetString(3);
                         objDataRegistrosVer.Pozo = dr.GetString(4);
@@ -705,6 +798,7 @@ namespace WebApplication1.Models
                         objDataRegistrosVer.Observaciones = dr.GetString(12);
                         objDataRegistrosVer.Codigo_Caja = dr.GetString(13);
                         objDataRegistrosVer.Ubicacion = dr.GetString(14);
+                        objDataRegistrosVer.Tiene_Documento= dr.GetString(16);
                         //objDataRegistrosVer.Fecha_Inventario = dr.GetString(18);
                         listComun.Add(objDataRegistrosVer);
                     }

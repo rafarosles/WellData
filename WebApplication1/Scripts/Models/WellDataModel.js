@@ -45,6 +45,8 @@ var wellDataContext =
     listDetalleAfectacionCia: [],
     listAfectacionesPep : [],
     listAfectadoAfectaciones: [],
+    listDoctosRegistrosGeofisicos: [],
+    listPozosDoctosRegGeo: [],
 
     obtenerCompoTipoInfo: function (callBackResult) {
         let self = this;
@@ -730,7 +732,7 @@ var wellDataContext =
                 if (resp.Error === false) {
                     for (var i = 0; i < resp.Resultado.length; i++) {
                         self.listRegistrosGeoVer.push({
-                            id: resp.Resultado[i].ID,
+                            id: resp.Resultado[i].Id,
                             campo: resp.Resultado[i].Campo,
                             pozo: resp.Resultado[i].Pozo,
                             descripcion: resp.Resultado[i].Descripcion,
@@ -742,8 +744,8 @@ var wellDataContext =
                             fecha_registro: resp.Resultado[i].Fecha_Registro,
                             observaciones: resp.Resultado[i].Observaciones,
                             codigo_caja: resp.Resultado[i].Codigo_Caja,
-                            ubicacion: resp.Resultado[i].Ubicacion
-
+                            ubicacion: resp.Resultado[i].Ubicacion,
+                            tiene_documento: resp.Resultado[i].Tiene_Documento == '1' ? `fa fa-eye` :`fa fa-times`
                         });
                     }
                     callBackResult({ ressult: 'tgp', message: resp.MensajeError });
@@ -1721,6 +1723,64 @@ var wellDataContext =
             success: function (resp) {
                 if (resp.Error === false) {
                     callBackResult({ ressult: 'tgp', message: resp.MensajeError, source: resp.Ruta_Archivo });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+            }
+        });
+    },
+
+    consultarDoctosGeofisicos: function (id, callBackResult) {
+        let self = this;
+        self.listDoctosRegistrosGeofisicos.length = 0;
+        $.ajax({
+            beforeSend: function () {
+            },
+            type: "GET",
+            url: urlServer + "accounts/ConsultarDoctosGeofisicos",
+            data: { id },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listDoctosRegistrosGeofisicos.push({
+                            nombre_docto: resp.Resultado[i].Nombre_Documento
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
+                }
+                else
+                    callBackResult({ ressult: 'notgp', message: resp.MensajeError });
+            },
+            error: function (ex) {
+                callBackResult({ ressult: 'notgp', message: ex });
+            },
+            complete: function () {
+            }
+        });
+    },
+
+    obtenerPozosDoctosRegGeo: function (region, callBackResult) {
+        let self = this;
+        self.listPozosDoctosRegGeo.length = 0;
+        $.ajax({
+            beforeSend: function () {
+            },
+            type: "GET",
+            url: urlServer + "accounts/ObtenerPozosDoctosRegGeo",
+            data: { region },
+            success: function (resp) {
+                if (resp.Error === false) {
+                    for (var i = 0; i < resp.Resultado.length; i++) {
+                        self.listPozosDoctosRegGeo.push({
+                            id: resp.Resultado[i].Id_Pozo, descripcion: resp.Resultado[i].Pozo
+                        });
+                    }
+                    callBackResult({ ressult: 'tgp', message: resp.MensajeError });
                 }
                 else
                     callBackResult({ ressult: 'notgp', message: resp.MensajeError });
