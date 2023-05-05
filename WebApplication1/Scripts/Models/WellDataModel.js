@@ -1748,11 +1748,11 @@ var wellDataContext =
                 if (resp.Error === false) {
                     for (var i = 0; i < resp.Resultado.length; i++) {
                         self.listDoctosRegistrosGeofisicos.push({
-                            nombre_docto: resp.Resultado[i].Nombre_Documento
+                            Nombre_Docto: resp.Resultado[i].Nombre_Documento, ruta_docto: resp.Resultado[i].Ruta
                         });
                     }
                     callBackResult({ ressult: 'tgp', message: resp.MensajeError });
-                }
+                }                    
                 else
                     callBackResult({ ressult: 'notgp', message: resp.MensajeError });
             },

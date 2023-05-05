@@ -788,12 +788,18 @@ namespace WebApplication1.Controllers
         {
             Cat_Registros_Geo_Veracruz objRegistrosGeo = new Cat_Registros_Geo_Veracruz();
             Resultado_Registros_Geo_Veracruz objResultado = new Resultado_Registros_Geo_Veracruz();
+            List<Cat_Registros_Geo_Veracruz> list = new List<Cat_Registros_Geo_Veracruz>();
             objRegistrosGeo.Id = id;
             try
             {
                 objResultado.Resultado = CursorDataContext.ObtenerNombreDocumento(objRegistrosGeo);
+                objRegistrosGeo.Nombre_Documento= objResultado.Resultado[0].Nombre_Documento;
                 objResultado.Error = false;
-                objResultado.MensajeError = "";
+                objResultado.MensajeError = "";                
+                //var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/neuralog/Archivos_Welldata/CAIMBA-12/", objResultado.Resultado[0].Nombre_Documento, System.IO.SearchOption.AllDirectories);
+                var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/Welldaata/Entregable de REGISTROS/", objResultado.Resultado[0].Nombre_Documento, System.IO.SearchOption.AllDirectories);                
+                objRegistrosGeo.Ruta = files[0];
+                objResultado.Resultado.Add(objRegistrosGeo);
                 return Json(objResultado, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -822,18 +828,7 @@ namespace WebApplication1.Controllers
                 objResultado.Resultado = null;
                 return Json(objResultado, JsonRequestBehavior.AllowGet);
             }
-        }
-        public void GridFilesRegistrosGeo(string name)
-        {
-            try
-            {
-                var archivos = System.IO.Directory.GetFiles(@"D:\registros-20230420T195739Z-001\registros\CAIMBA-12\PEMEX_CAIMBA_12_bhc_41.5_2900_02191973_CORRIDA1", ".*", System.IO.SearchOption.AllDirectories);                
-            }
-            catch(Exception ex)
-            {
-
-            }
-        }
+        }      
 
         /*--------------------INFORME TECNICO VERACRUZ--------------------*/
         public JsonResult ComboIdInformeInfTec(string tipo_metadata)

@@ -25,6 +25,7 @@ namespace WebApplication1.Models
         public string Tiene_Documento { get; set; }
         public string Nombre_Documento { get; set; }
         public string Region { get; set; }
+        public string Ruta { get; set; }
     }
 
     public class Resultado_Registros_Geo_Veracruz
@@ -32,6 +33,7 @@ namespace WebApplication1.Models
         public bool Error { get; set; }
         public string MensajeError { get; set; }
         public List<Cat_Registros_Geo_Veracruz> Resultado { get; set; }
+        public string Ruta_Archivo { get; set; }
 
     }
 }
