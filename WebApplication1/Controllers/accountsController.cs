@@ -797,7 +797,7 @@ namespace WebApplication1.Controllers
                 objResultado.Error = false;
                 objResultado.MensajeError = "";                
                 //var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/neuralog/Archivos_Welldata/CAIMBA-12/", objResultado.Resultado[0].Nombre_Documento, System.IO.SearchOption.AllDirectories);
-                var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/Welldaata/Entregable de REGISTROS/", objResultado.Resultado[0].Nombre_Documento, System.IO.SearchOption.AllDirectories);                
+                var files = System.IO.Directory.GetFiles("C:/inetpub/wwwroot/Welldata/Entregable de REGISTROS/", objResultado.Resultado[0].Nombre_Documento, System.IO.SearchOption.AllDirectories);                
                 objRegistrosGeo.Ruta = files[0];
                 objResultado.Resultado.Add(objRegistrosGeo);
                 return Json(objResultado, JsonRequestBehavior.AllowGet);
