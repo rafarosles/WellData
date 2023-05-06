@@ -531,10 +531,11 @@
                 switch (resp.ressult) {
                     case "tgp":
                         self.listDoctosRegistrosGeofisicos = wellDataContext.listDoctosRegistrosGeofisicos;
-                        self.nombre_archivo_reg_geo = self.listDoctosRegistrosGeofisicos[1].Nombre_Docto;
+                        self.nombre_archivo_reg_geo = self.listDoctosRegistrosGeofisicos[1].Nombre_Docto;                        
                         let source_reg_geo = self.listDoctosRegistrosGeofisicos[1].ruta_docto;
-                        source_reg_geo = (source_reg_geo).substr(source_reg_geo.indexOf('Entregable de REGISTROS') -1, source_reg_geo.length);
-                        window.open(source_reg_geo, '_blank');
+                        self.source_reg_geo = (source_reg_geo).substr(source_reg_geo.indexOf('Entregable de REGISTROS') -1, source_reg_geo.length);
+                        //self.source_reg_geo = (source_reg_geo).substr(source_reg_geo.indexOf('Archivos_Welldata') - 1, source_reg_geo.length);
+                        //window.open(source_reg_geo, '_blank');
                         break;
                     case "notgp":
                         alert(resp.message);

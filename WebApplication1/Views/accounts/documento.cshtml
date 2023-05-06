@@ -341,7 +341,6 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
                                                 <th>Campo</th>
                                                 <th>Pozo</th>
                                                 <th>Descripcion</th>
@@ -361,7 +360,6 @@
                                         <tbody ng-pagination="z in ctrl.listRegistrosGeoVer| filter:ctrl.Buscar| itemsPerPage: 10" pagination-id="PaginationGridRegGeo">
                                             @*|filter:{Fecha:ctrl.Fecha} | filter:{Tipo:ctrl.Tipo} {'campo donde se realiza la busqueda:ctrl.nombredelcontroladorpararealizarlabusqueda'} *@
                                             <tr>
-                                                <td>{{z.id}}</td>
                                                 <td>{{z.campo}}</td>
                                                 <td>{{z.pozo}}</td>
                                                 <td>{{z.descripcion}}</td>
@@ -398,7 +396,7 @@
                                         <table class="table table-bordered" >
                                             <tr>
                                                 <td>Nombre del Archivo:</td>
-                                                <td class="cjs-bg-columna"><a href="">{{ctrl.nombre_archivo_reg_geo}}</a></td>
+                                                <td class="cjs-bg-columna"><a href="{{ctrl.source_reg_geo}}">{{ctrl.nombre_archivo_reg_geo}}</a></td>
                                             </tr>
                                         </table>
                                     </div>
