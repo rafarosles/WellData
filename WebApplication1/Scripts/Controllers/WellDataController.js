@@ -527,6 +527,7 @@
 
 
         this.consultarDoctos = (id) => {
+            self.nombre_archivo_reg_geo = "";
             wellDataContext.consultarDoctosGeofisicos(id, function (resp) {
                 switch (resp.ressult) {
                     case "tgp":
@@ -538,7 +539,8 @@
                         //window.open(source_reg_geo, '_blank');
                         break;
                     case "notgp":
-                        alert(resp.message);
+                        //alert(resp.message);
+                        self.nombre_archivo_reg_geo = 'No se encontró el archivo'
                         break;
                     default:
                         break;
